@@ -23,6 +23,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/api/discogs/search/route.js", "lib/mongo.ts", "src/app/api/catalogo/[id]/route.js"],
   "exclude": ["node_modules"]
 }
