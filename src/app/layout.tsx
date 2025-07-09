@@ -22,7 +22,7 @@ export default function RootLayout({children,}: Readonly<{children: React.ReactN
     <html lang="pt-br" className={interFont.className} suppressHydrationWarning>
       <body>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          <nav className={`${libreFont.className} flex items-center justify-center gap-2 h-16 border-b-1 border-b-neutral-700 fixed w-full top-0`} style={{ backgroundColor: '#0D0D0D' }}>
+          <nav className={`${libreFont.className} flex items-center justify-center gap-2 h-16 border-b-1 border-b-neutral-700 fixed w-full top-0 z-10`} style={{ backgroundColor: '#0D0D0D' }}>
               <Image src="logo.svg" alt="Logo Disco de Vinil" width={34} height={34}/>
               <h1 className="text-white text-lg">MAYHEM RECORDS</h1>
             </nav>
