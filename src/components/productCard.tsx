@@ -1,4 +1,4 @@
-/* eslint-disable @next/next/no-img-element */
+
 import { ProductType } from "@/lib/types/Product"
 import Image from "next/image";
 
@@ -9,7 +9,7 @@ interface ProductCardProps extends Pick<ProductType, 'title' | 'artist' | 'price
 export default function ProductCard(props: ProductCardProps){
     return(
         <article className="border min-h-79 border-neutral-700 p-2 rounded-lg h-full flex flex-col shadow-lg shadow-neutral-950 w-full">
-            <div className="">
+            <div>
                 <div className="flex shrink">
                     <Image src={props.img} alt="album cover" className="w-full rounded-md mb-2 border border-neutral-700 aspect-square" width={300} height={300}/>
                 </div>
