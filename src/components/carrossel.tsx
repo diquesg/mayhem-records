@@ -19,8 +19,8 @@ export default function Carrossel(){
         }),
       ]}>
         <CarouselContent>
-          <CarouselItem><Link href={"/destaques"}><img className="max-h-117" src="/home-banner.png" alt="banner"/></Link></CarouselItem>
-          <CarouselItem><img src="/home-banner-2.png" alt="banner"/></CarouselItem>
+          <CarouselItem><Link href={"/destaques"}><img className="aspect-<16/9>" src="/home-banner.png" alt="banner"/></Link></CarouselItem>
+          <CarouselItem><img className="aspect-<16/9>" src="/home-banner-2.png" alt="banner"/></CarouselItem>
         </CarouselContent>
         <CarouselPrevious />
         <CarouselNext className="-ml-50"/>

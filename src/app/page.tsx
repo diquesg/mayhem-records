@@ -14,7 +14,7 @@ export default async function Home() {
   console.log(products);
 
   return (
-    <main className="pt-16">
+    <main className="pt-16 mb-23 pb-1">
       <Carrossel/>
       <div className="flex py-4 px-6 justify-between text-sm">
         <p className="text-neutral-200 text-md font-normal">CATÁLOGO {">"} Destaques</p>
