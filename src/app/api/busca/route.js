@@ -29,7 +29,10 @@ export const GET = async(request) => {
     let sortOptions = {};
     if(sort === 'price_asc') sortOptions = {price: 1};
     if(sort === 'price_desc') sortOptions = {price: -1};
-    if(sort === 'relevance') sortOptions = {createdAt: -1};
+    if(sort === 'relevance_asc') sortOptions = {createdAt: 1};
+    if(sort === 'relevance_desc') sortOptions = {createdAt: -1};
+    if(sort === 'sales_asc') sortOptions = {sales: 1};
+    if(sort === 'sales_desc') sortOptions = {sales: -1};
 
     const [products, total] = await Promise.all([
         Product.find(query)
