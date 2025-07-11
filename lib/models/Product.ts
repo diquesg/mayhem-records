@@ -8,7 +8,8 @@ const ProductSchema = new Schema({
     edition: {type: String, default: "Standard"},
     year: {type: Number},
     img: {type: String},
-    genre: {type: [String]}
+    genre: {type: [String]},
+    sales: {type: Number, default: 0},
 },
     {timestamps: true}
 );

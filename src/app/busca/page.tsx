@@ -86,7 +86,7 @@ export default function Busca() {
         <button onClick={() => toggleSort('relevance')} className={`rounded-full flex items-center gap-2 ${products.length < 2 ? "opacity-50 cursor-not-allowed" : ""}`} disabled={products.length < 2}>
 
           <span>
-            {sortDirection === 'normal' || activeSort === 'price' ? <svg width={10} viewBox="0 0 34 21" fill="none" xmlns="http://www.w3.org/2000/svg" className=''> <path d="M19.1213 19.3787C17.9497 20.5503 16.0503 20.5503 14.8787 19.3787L1.12132 5.62132C-0.768574 3.73143 0.569926 0.5 3.24264 0.5H30.7574C33.4301 0.5 34.7686 3.73143 32.8787 5.62132L19.1213 19.3787Z" fill="#C2C2C2"/></svg> : ''}
+            {sortDirection === 'normal' || activeSort !== 'relevance' ? <svg width={10} viewBox="0 0 34 21" fill="none" xmlns="http://www.w3.org/2000/svg" className=''> <path d="M19.1213 19.3787C17.9497 20.5503 16.0503 20.5503 14.8787 19.3787L1.12132 5.62132C-0.768574 3.73143 0.569926 0.5 3.24264 0.5H30.7574C33.4301 0.5 34.7686 3.73143 32.8787 5.62132L19.1213 19.3787Z" fill="#C2C2C2"/></svg> : ''}
 
 
             {(sortDirection === 'desc' && activeSort === 'relevance') && <svg width={10} viewBox="0 0 34 21" fill="none" xmlns="http://www.w3.org/2000/svg" className=''>
@@ -108,7 +108,7 @@ export default function Busca() {
 
           <span className="text-sm">
 
-            {sortDirection === 'normal' || activeSort === 'relevance' ? <svg width={10} viewBox="0 0 34 21" fill="none" xmlns="http://www.w3.org/2000/svg" className=''> <path d="M19.1213 19.3787C17.9497 20.5503 16.0503 20.5503 14.8787 19.3787L1.12132 5.62132C-0.768574 3.73143 0.569926 0.5 3.24264 0.5H30.7574C33.4301 0.5 34.7686 3.73143 32.8787 5.62132L19.1213 19.3787Z" fill="#C2C2C2"/></svg> : ''}
+            {sortDirection === 'normal' || activeSort !== 'price' ? <svg width={10} viewBox="0 0 34 21" fill="none" xmlns="http://www.w3.org/2000/svg" className=''> <path d="M19.1213 19.3787C17.9497 20.5503 16.0503 20.5503 14.8787 19.3787L1.12132 5.62132C-0.768574 3.73143 0.569926 0.5 3.24264 0.5H30.7574C33.4301 0.5 34.7686 3.73143 32.8787 5.62132L19.1213 19.3787Z" fill="#C2C2C2"/></svg> : ''}
 
             {(sortDirection === 'desc' && activeSort === 'price') && <svg width={10} viewBox="0 0 34 21" fill="none" xmlns="http://www.w3.org/2000/svg" className=''>
                 <path className='fill-blue-500' d="M19.1213 19.3787C17.9497 20.5503 16.0503 20.5503 14.8787 19.3787L1.12132 5.62132C-0.768574 3.73143 0.569926 0.5 3.24264 0.5H30.7574C33.4301 0.5 34.7686 3.73143 32.8787 5.62132L19.1213 19.3787Z" fill="#C2C2C2"/>
@@ -121,6 +121,26 @@ export default function Busca() {
           </span>
 
           <span className={`${sortDirection !== 'normal' && activeSort === 'price' ? "text-blue-500" : ""}`}>Preço</span>
+
+        </button>
+
+        <button onClick={() => toggleSort('sales')} className={`p-1 rounded-full flex items-center gap-2 ${products.length < 2 ? "opacity-50 cursor-not-allowed" : ""}`} disabled={products.length < 2}>
+
+          <span className="text-sm">
+
+            {sortDirection === 'normal' || activeSort !== 'sales' ? <svg width={10} viewBox="0 0 34 21" fill="none" xmlns="http://www.w3.org/2000/svg" className=''> <path d="M19.1213 19.3787C17.9497 20.5503 16.0503 20.5503 14.8787 19.3787L1.12132 5.62132C-0.768574 3.73143 0.569926 0.5 3.24264 0.5H30.7574C33.4301 0.5 34.7686 3.73143 32.8787 5.62132L19.1213 19.3787Z" fill="#C2C2C2"/></svg> : ''}
+
+            {(sortDirection === 'desc' && activeSort === 'sales') && <svg width={10} viewBox="0 0 34 21" fill="none" xmlns="http://www.w3.org/2000/svg" className=''>
+                <path className='fill-blue-500' d="M19.1213 19.3787C17.9497 20.5503 16.0503 20.5503 14.8787 19.3787L1.12132 5.62132C-0.768574 3.73143 0.569926 0.5 3.24264 0.5H30.7574C33.4301 0.5 34.7686 3.73143 32.8787 5.62132L19.1213 19.3787Z" fill="#C2C2C2"/>
+              </svg>}
+
+            {(sortDirection === 'asc' && (activeSort === 'sales')) && <svg width={10} viewBox="0 0 34 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path className='fill-blue-500' d="M19.1213 1.62132C17.9497 0.449749 16.0503 0.449748 14.8787 1.62132L1.12132 15.3787C-0.768574 17.2686 0.569926 20.5 3.24264 20.5H30.7574C33.4301 20.5 34.7686 17.2686 32.8787 15.3787L19.1213 1.62132Z" fill="#C2C2C2"/>
+              </svg>}
+
+          </span>
+
+          <span className={`${sortDirection !== 'normal' && activeSort === 'sales' ? "text-blue-500" : ""}`}>Mais vendidos</span>
 
         </button>
 
