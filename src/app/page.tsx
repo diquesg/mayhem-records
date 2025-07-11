@@ -11,9 +11,6 @@ export default async function Home() {
   }
 
   const products = await getProducts();
-  console.log(products);
-
-  
 
   return (
     <main className="pt-16 mb-23 pb-1">
