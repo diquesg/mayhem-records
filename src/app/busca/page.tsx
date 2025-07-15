@@ -13,7 +13,6 @@ export default function Busca() {
   const [query, setQuery] = useState('');
   const [products, setProducts] = useState([]);
   const [warning, setWarning] = useState(false);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isLoading, setIsLoading] = useState(false);
   const [activeSort, setActiveSort] = useState<SortType | null>(null);
   const [sortDirection, setSortDirection] = useState<SortDirection>('normal');
