@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "../components/theme-provider";
 import Navbar from "@/src/components/navbar"
 import HeaderLogo from "../components/header-logo";
+import { CartProvider } from "@/lib/contexts/cartContext";
 
 
 const interFont = Inter({
@@ -24,7 +25,9 @@ export default function RootLayout({children,}: Readonly<{children: React.ReactN
       <body>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <HeaderLogo/>
-          {children}
+          <CartProvider>
+            {children}
+          </CartProvider>
           <Navbar/>
         </ThemeProvider>
       </body>

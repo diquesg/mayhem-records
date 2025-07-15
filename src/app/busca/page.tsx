@@ -17,10 +17,16 @@ export default function Busca() {
   const [isLoading, setIsLoading] = useState(false);
   const [activeSort, setActiveSort] = useState<SortType | null>(null);
   const [sortDirection, setSortDirection] = useState<SortDirection>('normal');
+  const [activeSearch, setActiveSearch] = useState(false);
+
 
     const fetchProducts = async () => {
-      if (!query.trim()) return;
-      
+
+      if (!query.trim()){
+        setWarning(true);
+        return;
+      }
+
       setIsLoading(true);
       try {
         const params = new URLSearchParams({
@@ -29,11 +35,12 @@ export default function Busca() {
         });
 
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/busca?${params}`);
-        if (!res.ok) throw new Error('Erro na busca');
-        
+        if (!res.ok){
+          throw new Error('Erro na busca');
+        } 
+          
         const data = await res.json();
         setProducts(data.products);
-        setWarning(false);
       } catch (error) {
         console.error('Erro:', error);
         setWarning(true);
@@ -68,10 +75,20 @@ export default function Busca() {
     }
   }
 
+  console.log(activeSearch);
+
   return (
     <main className='pt-19 pb-23'>
-      <form onSubmit={handleSearch} className="z-20 fixed top-0 border-b w-full h-16 flex items-center p-3 gap-2 bg-[#0D0D0D] border-neutral-700">
+      <form
+        onSubmit={e => {
+          setActiveSearch(false);
+          handleSearch(e);
+        }}
+        className="z-20 fixed top-0 border-b w-full h-16 flex items-center p-3 gap-2 bg-[#0D0D0D] border-neutral-700"
+      >
         <input
+          onFocus={() => setActiveSearch(true)}
+          onBlur={() => setActiveSearch(false)}
           value={query}
           onChange={e => setQuery(e.target.value)}
           placeholder="O que você quer ouvir hoje?"
@@ -80,7 +97,8 @@ export default function Busca() {
         <button type="submit" className='bg-blue-600 rounded-full h-fit p-2 active:bg-blue-400'><Search size={20} /></button>
       </form>
       
-      <div className="flex gap-3 ml-3">
+      
+      <div className="flex gap-3 -mt-3 p-3 fixed z-10 bg-[#131313] w-full h-fit border-b border-neutral-800">
       
       
         <button onClick={() => toggleSort('relevance')} className={`rounded-full flex items-center gap-2 ${products.length < 2 ? "opacity-50 cursor-not-allowed" : ""}`} disabled={products.length < 2}>
@@ -146,7 +164,7 @@ export default function Busca() {
 
       </div>
       
-      <section className={`m-3 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-3 lg:gap-4 justify-items-center ${isLoading ? "opacity-50" : ""}`}>
+      <section className={`m-3 mt-14 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-3 lg:gap-4 justify-items-center ${isLoading ? "opacity-50" : ""}`}>
         {
         products.map((product: ProductType) => <ProductCard key={product._id} title={product.title} artist={product.artist} img={product.img} price={product.price} _id={product._id}/>)
       }
