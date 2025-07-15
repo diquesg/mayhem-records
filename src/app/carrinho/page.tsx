@@ -4,6 +4,7 @@ import { useCart } from '@/lib/contexts/cartContext';
 import { Check, Disc3, ShoppingCart, Trash2 } from 'lucide-react';
 import Image from 'next/image';
 import BackButton from '@/src/components/backButton';
+import Link from 'next/link';
 
 export default function CartPage() {
     const {
@@ -16,10 +17,11 @@ export default function CartPage() {
     
     if (itemCount === 0) {
         return (
-            <div className="mx-auto mt-82 text-center h-full">
-            <Disc3 className='mx-auto my-2' width={40} height={40}/>
-            <h1 className="text-2xl font-bold mb-1 mt-5">Ops! Seu carrinho está vazio.</h1>
-            <p className='text-neutral-400 max-w-80 mx-auto'>Adicione seus discos favoritos ao carrinho e volte aqui!</p>
+        <div className="mx-auto mt-79 text-center h-full">
+          <Disc3 className='mx-auto my-2' width={40} height={40}/>
+          <h1 className="text-2xl font-bold mb-1 mt-5">Ops! Seu carrinho está vazio.</h1>
+          <p className='text-neutral-400 max-w-80 mx-auto mb-6'>Adicione seus discos favoritos ao carrinho e volte aqui!</p>
+          <Link href="/catalogo" className='p-3 rounded-full border border-neutral-400 active:bg-neutral-600 active:scale-90'>Voltar ao catálogo</Link>
         </div>
     );
 }
