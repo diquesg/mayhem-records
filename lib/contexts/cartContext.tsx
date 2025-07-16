@@ -9,6 +9,7 @@ interface CartItem {
   price: number;
   img: string;
   quantity: number;
+  edition: string;
 }
 
 interface CartContextType {

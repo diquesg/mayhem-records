@@ -3,13 +3,15 @@
 import Link from "next/link";
 import { Disc3, Home, SearchIcon, ShoppingCartIcon, UserRound } from "lucide-react";
 import { usePathname } from "next/navigation";
+import { useParams } from "next/navigation";
 
 export default function Navbar(){
 
     const pathname = usePathname();
+    const {id} = useParams();
 
     return(
-    <nav className="fixed z-10 bottom-0 bg-[#131313] w-full h-23 border-t border-neutral-700">
+    <nav className={`fixed z-10 bottom-0 bg-[#131313] w-full h-23 ${pathname === `/catalogo/${id}` ? "border-t-none" : "border-t"} border-neutral-700`}>
         <ul className="bg-[#141414] shadow-lg shadow-neutral-950 grid grid-cols-5 items-center m-2 border min-h-19 rounded-xl text-[12px]">
             <li className="m-auto">
                 <button className="justify-items-center">
