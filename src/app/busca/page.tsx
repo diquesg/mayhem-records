@@ -3,7 +3,7 @@
 import { FormEvent, useEffect, useState } from 'react';
 import { ProductType } from '@/lib/types/Product';
 import ProductCard from '@/src/components/productCard';
-import { Search } from 'lucide-react';
+import { Disc3, Search } from 'lucide-react';
 
 
 type SortType = 'price' | 'relevance' | 'sales';
@@ -163,6 +163,7 @@ export default function Busca() {
 
       </div>
       
+        {products.length === 0 && <div className='flex flex-col text-center items-center text-neutral-600 gap-2 w-full mt-75'><Disc3 width={40} height={40}/> <p className='text-lg font-semibold'>Pesquise seu álbum favorito!</p></div>}
       <section className={`m-3 mt-14 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-3 lg:gap-4 justify-items-center ${isLoading ? "opacity-50" : ""}`}>
         {
         products.map((product: ProductType) => <ProductCard key={product._id} title={product.title} artist={product.artist} img={product.img} price={product.price} _id={product._id} edition={product.edition}/>)

@@ -58,16 +58,18 @@ export default function Pagamento(){
         const result = await processPayment('pix', total);
 
         if (result.success) {
-            setTransactionDetails({
-            success: true,
-            transactionId: result.transactionId,
-            method: 'pix',
-            items: cartItems,
-            total,
-            date: new Date().toLocaleString(),
-            qrCode: "000201010212..."
-            });
-            setShowPixQrCode(true);
+                setTransactionDetails({
+                success: false,
+                transactionId: `PIX-${Math.floor(Math.random() * 1000000).toString().padStart(6, '0')}`,
+                method: 'pix',
+                items: cartItems,
+                total,
+                date: new Date().toLocaleString(),
+                qrCode: "00020101021226860014BR.GOV.BCB.PIX2560qrcodes.banco.com.br/qr/v2/9d36b84fc70b478fb95c233a80d8a1c8520400005303986540510.005802BR5925EMPRESA EXEMPLO SA6008BRASILIA62070503***6304E3A0"
+                });
+                
+                setShowPixQrCode(true);
+                setIsProcessing(false);
         } else {
             setTransactionDetails({
             success: false,
@@ -77,7 +79,6 @@ export default function Pagamento(){
             date: new Date().toLocaleString(),
             error: result.error
             });
-            setShowPixQrCode(false);
             setPaymentError(result.error)
         }
 
@@ -228,7 +229,7 @@ export default function Pagamento(){
                     </div>
                     )}
                 {showPixQrCode && (
-                <div className="fixed inset-0 bg-black/75 z-50 flex items-center justify-center p-3">
+                <div className="fixed inset-0 z-50 bg-black/75 flex items-center justify-center p-3">
                     <div className="bg-neutral-900 rounded-lg p-6 max-w-md w-full border border-neutral-700">
                     <div className='flex gap-2 mb-5 justify-center items-center'>
                         <Image src="/pix.png" alt='pix logo' width={32} height={32} className=''/>
