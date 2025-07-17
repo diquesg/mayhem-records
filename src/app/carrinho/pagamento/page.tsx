@@ -177,18 +177,21 @@ export default function Pagamento(){
                             >
                             <div className="flex items-center gap-3 border border-neutral-800 p-3 rounded-md focus:border-neutral-100">
                                 <RadioGroupItem value="card1" id="r1" />
-                                <Label htmlFor="r1">•••• •••• •••• 5225 (Crédito)</Label>
-                                <Image src="/mastercard.png" width={28} height={15} alt={"mastercard"}/>
+                                <Label htmlFor="r1" className='w-full'>•••• •••• •••• 5225 (Crédito)
+                                    <Image src="/mastercard.png" width={28} height={15} alt={"mastercard"}/>
+                                </Label>
                             </div>
                             <div className="flex items-center gap-3 border border-neutral-800 p-3 rounded-md">
                                 <RadioGroupItem value="card2" id="r2" />
-                                <Label htmlFor="r2">•••• •••• •••• 7223 (Débito)</Label>
-                                <Image src="/mastercard.png" width={28} height={15} alt={"mastercard"}/>
+                                <Label htmlFor="r2" className='w-full'>•••• •••• •••• 7223 (Débito)
+                                    <Image src="/mastercard.png" width={28} height={15} alt={"mastercard"}/>
+                                </Label>
                             </div>
                             <div className="flex items-center gap-3 border border-neutral-800 p-3 rounded-md">
                                 <RadioGroupItem value="pix" id="r3" />
-                                <Label htmlFor="r3">Pix</Label>
-                                <Image src="/pix.png" width={20} height={20} alt={"pix"}/>
+                                <Label htmlFor="r3" className='w-full'>Pix
+                                    <Image src="/pix.png" width={20} height={20} alt={"pix"}/>
+                                </Label>
                             </div>
                             </RadioGroup>
                         </div>
@@ -294,14 +297,14 @@ export default function Pagamento(){
                 {transactionDetails?.success && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center">
                     <div className="fixed inset-0 bg-black/75 z-50 flex items-center justify-center">
-                        <div className="bg-[#1a1a1a] rounded-lg p-6 max-w-md w-full m-3 border border-neutral-800">
+                        <div className="bg-[#1a1a1a] rounded-lg p-6 max-w-md w-full m-3 border border-neutral-700">
                         <div className="text-center mb-6">
                             <Check className="w-16 h-16 text-green-500 mx-auto mb-4" strokeWidth={1.5} />
                             <h2 className="text-2xl font-bold">Pagamento Aprovado!</h2>
                             <p className="text-neutral-400 mt-2">Seu pedido foi processado com sucesso.</p>
                         </div>
 
-                        <div className="bg-neutral-900 rounded-lg p-4 mb-6 border border-neutral-600 flex flex-col gap-3 text-neutral-400">
+                        <div className="bg-neutral-900 rounded-lg p-4 mb-6 border border-neutral-800 flex flex-col gap-3 text-neutral-400">
                             <div className="flex justify-between">
                                 <span className='font-bold'>ID da Transação:</span>
                                 <span className="font-mono truncate">{transactionDetails.transactionId}</span>
@@ -327,11 +330,11 @@ export default function Pagamento(){
                         <div className="text-center">
                             <Link 
                             href="/catalogo" onClick={() => clearCart()}
-                            className="inline-block bg-blue-600 hover:bg-blue-700 active:scale-90 active:bg-blue-800 text-white py-3 px-6 rounded-full font-medium"
+                            className="inline-block bg-blue-600 hover:bg-blue-700 active:scale-95 active:bg-blue-800 text-white py-3 px-6 rounded-full font-medium"
                             >
                             Continuar Comprando
                             </Link>
-                            <button className="mt-4 text-neutral-200 hover:text-white block w-full" onClick={() => {
+                            <button className="mt-4 text-neutral-200 hover:text-white block w-full active:underline hover:underline" onClick={() => {
                                     clearCart();
                                     setTransactionDetails(null);
                             }}>Fechar</button>

@@ -101,7 +101,7 @@ export default function ProductPage() {
 
     return (
         <main>
-            <div className='mt-20 m-4 pb-50'>
+            <div className='mt-20 m-4 pb-50 relative'>
                 <Image 
                     src={product.img} 
                     alt="album cover" 
@@ -110,12 +110,24 @@ export default function ProductPage() {
                     height={300}
                     priority
                 />
+                {product.edition === "Deluxe" && 
+                <div className='absolute bg-amber-400 top-0 m-3 text-black font-bold flex items-center gap-1 p-1 border-2 border-amber-500 rounded-md text-sm tracking-tight'>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6 16L10 12.95L14 16L12.5 11.05L16.5 8.2H11.6L10 3L8.4 8.2H3.5L7.5 11.05L6 16ZM10 20C8.61667 20 7.31667 19.7375 6.1 19.2125C4.88333 18.6875 3.825 17.975 2.925 17.075C2.025 16.175 1.3125 15.1167 0.7875 13.9C0.2625 12.6833 0 11.3833 0 10C0 8.61667 0.2625 7.31667 0.7875 6.1C1.3125 4.88333 2.025 3.825 2.925 2.925C3.825 2.025 4.88333 1.3125 6.1 0.7875C7.31667 0.2625 8.61667 0 10 0C11.3833 0 12.6833 0.2625 13.9 0.7875C15.1167 1.3125 16.175 2.025 17.075 2.925C17.975 3.825 18.6875 4.88333 19.2125 6.1C19.7375 7.31667 20 8.61667 20 10C20 11.3833 19.7375 12.6833 19.2125 13.9C18.6875 15.1167 17.975 16.175 17.075 17.075C16.175 17.975 15.1167 18.6875 13.9 19.2125C12.6833 19.7375 11.3833 20 10 20Z" fill="black"/>
+                    </svg>DELUXE
+                </div>}
+                {product.edition === "Exclusive" && 
+                <div className='absolute bg-black top-0 m-3 font-bold flex items-center gap-1 p-1 border-2 border-purple-500 text-purple-100 text-sm rounded-md tracking-tight'>
+                    <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3.825 19L5.45 11.975L0 7.25L7.2 6.625L10 0L12.8 6.625L20 7.25L14.55 11.975L16.175 19L10 15.275L3.825 19Z" fill="oklch(94.6% 0.033 307.174)"/>
+                    </svg>EXCLUSIVO
+                </div>}
                 <div className='flex justify-between'>
                     <div className='flex-row'>
                         <h1 className='font-medium text-neutral-300 text-lg max-w-80'>{product.title}</h1>
                         <h2 className='font-light text-neutral-400 py-1'>{product.artist}</h2>
                     </div>
-                    <FavoriteButton productId={product._id} />
+                    <FavoriteButton product={product} />
                 </div>
                 <div className='flex items-center justify-between'>
                     <div className='flex gap-1 items-center font-extralight text-neutral-400'>
@@ -140,7 +152,7 @@ export default function ProductPage() {
             <div className='fixed bottom-21 bg-[#131313] border-t border-t-neutral-600 rounded-t-2xl items-center h-21 w-full p-5 flex justify-between'>
                 <p className='text-2xl font-bold'>R$ {product.price.toFixed(2)}</p>
                 <button 
-                    className='bg-blue-600 p-3 rounded-full text-white font-bold flex gap-3 px-4 shadow-md shadow-neutral-950 active:scale-90 active:bg-blue-800' 
+                    className='bg-blue-600 p-3 rounded-full text-white font-bold flex gap-3 px-4 shadow-md shadow-neutral-950 active:scale-95 active:bg-blue-800' 
                     onClick={handleAddToCart}
                 >
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
