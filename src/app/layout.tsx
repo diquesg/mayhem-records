@@ -30,8 +30,8 @@ export default function RootLayout({children,}: Readonly<{children: React.ReactN
             <FavoritesProvider>
               {children}
             </FavoritesProvider>
-          </CartProvider>
           <Navbar/>
+          </CartProvider>
         </ThemeProvider>
       </body>
     </html>

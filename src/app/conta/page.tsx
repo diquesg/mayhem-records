@@ -19,14 +19,14 @@ export default function Conta(){
                         </svg>
                         <p className="text-sm text-neutral-400">Amante de música desde 2025</p>
                     </span>
-                    <Link href="/configuracoes"><button className="p-1 my-1 border border-neutral-500 px-3 text-sm w-fit bg-neutral-800 rounded-md active:scale-90 active:bg-neutral-900 hover:bg-neutral-900 hover:cursor-pointer">Ver Perfil</button></Link>
+                    <Link href="/configuracoes"><button className="p-1 my-1 border border-neutral-500 px-3 text-sm w-fit bg-neutral-800 rounded-md active:scale-90 active:bg-neutral-900 hover:bg-neutral-900 hover:cursor-pointer">Editar Perfil</button></Link>
                 </div>
             </section>
             <h1 className="text-lg border-y border-neutral-800 p-3">Pronto(a) para mais um disco hoje, {usuario}?</h1>
             <section className="">
                 <ul className="w-full border-b">
-                    <li className="hover:bg-neutral-800 active:bg-neutral-800"><Link href="/meus-pedidos" className="flex p-3 gap-2 w-full active:scale-95"><Disc3 width={18}/>Meus pedidos<ArrowRight width={18} className="ml-auto"/></Link></li>
-                    <li className="hover:bg-neutral-800 active:bg-neutral-800"><Link href="/meus-favoritos" className="flex p-3 gap-2 w-full active:scale-95"><Heart width={18}/>Meus favoritos<ArrowRight width={18} className="ml-auto"/></Link></li>
+                    <li className="hover:bg-neutral-800 active:bg-neutral-800"><Link href="conta/meus-pedidos" className="flex p-3 gap-2 w-full active:scale-95"><Disc3 width={18}/>Meus pedidos<ArrowRight width={18} className="ml-auto"/></Link></li>
+                    <li className="hover:bg-neutral-800 active:bg-neutral-800"><Link href="conta/meus-favoritos" className="flex p-3 gap-2 w-full active:scale-95"><Heart width={18}/>Meus favoritos<ArrowRight width={18} className="ml-auto"/></Link></li>
                     <li className="hover:bg-neutral-800 active:bg-neutral-800"><Link href="/configuracoes" className="flex p-3 gap-2 w-full active:scale-95"><Settings width={18}/>Configurações<ArrowRight width={18} className="ml-auto"/></Link></li>
                     <li className="hover:bg-neutral-800 active:bg-neutral-800 text-red-400"><button disabled className="flex p-3 gap-2 w-full active:scale-95 cursor-pointer"><LogOut width={18}/>Sair</button></li>
                 </ul>

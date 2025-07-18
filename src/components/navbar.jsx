@@ -4,8 +4,12 @@ import Link from "next/link";
 import { Disc3, Home, SearchIcon, ShoppingCartIcon, User2 } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useParams } from "next/navigation";
+import { useCart } from "@/lib/contexts/cartContext";
 
 export default function Navbar(){
+    const cart = useCart();
+    const cartCount = cart.cartItems.length
+    const notification = cartCount > 0
 
     const pathname = usePathname();
     const {id} = useParams();
@@ -40,9 +44,10 @@ export default function Navbar(){
                 </button>
             </li>
             <li className="m-auto">
-                <button className="justify-items-center">
+                <button className="justify-items-center relative">
                     <Link href="/carrinho" className="flex flex-col items-center gap-1  active:scale-110">
-                        <ShoppingCartIcon className={pathname == "/carrinho" ? "bg-white text-black w-12 rounded-full" : "text-neutral-400"}/>
+                        <ShoppingCartIcon className={pathname == "/carrinho" ? "bg-white text-black w-12 rounded-full" : "text-neutral-400"}></ShoppingCartIcon>
+                        {notification && <span className="absolute right-2 bg-red-500 w-4 h-4 text-xs rounded-full top-0 z-10">{cartCount}</span>}
                         <p className={pathname == "/carrinho" ? "text-white" : "text-neutral-400"}>Carrinho</p>
                     </Link>
                 </button>

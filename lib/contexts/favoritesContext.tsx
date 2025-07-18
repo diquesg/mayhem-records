@@ -3,6 +3,7 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 
 interface Product {
+  edition: string;
   _id: string;
   title: string;
   artist: string;

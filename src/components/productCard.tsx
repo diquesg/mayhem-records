@@ -12,9 +12,10 @@ interface ProductCardProps extends Pick<ProductType, 'title' | 'artist' | 'price
 export default function ProductCard(props: ProductCardProps){
 
     const [showTooltip, setShowTooltip] = useState(false);
+
     return(
         <article className="border min-h-79 relative border-neutral-700 p-2 rounded-2xl sm:rounded-lg h-full flex flex-col shadow-md shadow-black w-full">
-            {props.edition === "Deluxe" && <div onClick={() => setShowTooltip(prev => !prev)} className="absolute -top-2 right-7 z-10 shadow-lg rounded-xl shadow-black group">
+            {props.edition === "Deluxe" && <div onClick={() => setShowTooltip(prev => !prev)} className="absolute -top-2 right-7 z-5 shadow-lg rounded-xl shadow-black group">
                 {showTooltip && <span className="absolute lg:hidden -top-10 -right-10 bg-black text-white p-1 px-2 text-nowrap rounded-md border border-amber-400">Edição Deluxe</span>}
                 <span className="absolute -top-10 -right-10 hidden lg:block bg-black text-white p-1 px-2 text-nowrap rounded-md border border-amber-400 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                     Edição Deluxe
@@ -31,7 +32,7 @@ export default function ProductCard(props: ProductCardProps){
                     </defs>
                 </svg>
             </div>}
-            {props.edition === "Exclusive" && <div onClick={() => setShowTooltip(prev => !prev)} className="absolute -top-2 right-7 z-10 shadow-lg rounded-xl shadow-black group">
+            {props.edition === "Exclusive" && <div onClick={() => setShowTooltip(prev => !prev)} className="absolute -top-2 right-7 z-5 shadow-lg rounded-xl shadow-black group">
                 {showTooltip && <span className="absolute lg:hidden -top-10 -right-10 bg-black text-white p-1 px-2 text-nowrap rounded-md border border-purple-500">Edição Exclusive</span>}
                 <span className="absolute -top-10 -right-10 hidden lg:block bg-black text-white p-1 px-2 text-nowrap rounded-md border border-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                     Edição Exclusive
@@ -53,13 +54,13 @@ export default function ProductCard(props: ProductCardProps){
                     <Image src={props.img} alt="album cover" className="w-full rounded-xl sm:rounded-md mb-2 border border-neutral-700 aspect-square" width={300} height={300}/>
                 </div>
                 <div className="flex flex-col grow">
-                    <h1 className="text-md leading-5 font-light line-clamp-2">{props.title}</h1>
+                    <Link href={`/catalogo/${props._id}`} className="active:underline hover:underline"><h1 className="text-md leading-5 font-light line-clamp-2">{props.title}</h1></Link>
                     <p className="font-extralight text-sm pt-1">{props.artist}</p>
                 </div>
             </div>
             <div className="flex justify-between items-center mt-auto mb-1">
-                <p className="font-medium text-xl text-neutral-200">R$ {props.price}</p>
-                <Link className="mt-1" href={`/catalogo/${props._id}`}><button className="bg-blue-600 px-5 rounded-xl h-8 cursor-pointer hover:bg-blue-700 hover:shadow-md shadow-black active:bg-blue-800 active:scale-90"><Image width={7} height={10} src="next-icon.svg" alt="go to button"/></button></Link>
+                <p className="font-medium text-xl text-neutral-200">R$ {props.price.toFixed(2)}</p>
+                <Link className="mt-1" href={`/catalogo/${props._id}`}><button className="bg-blue-600 px-5 rounded-xl h-8 cursor-pointer hover:bg-blue-700 hover:shadow-md shadow-black active:bg-blue-800 active:scale-90"><Image width={7} height={10} src="/next-icon.svg" alt="go to button"/></button></Link>
             </div>
         </article>
     )
