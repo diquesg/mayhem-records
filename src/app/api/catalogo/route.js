@@ -6,14 +6,26 @@ import mongoose from "mongoose";
 
 const ObjectId = mongoose.Types.ObjectId;
 
-export const GET = async () => {
-    try{
-        await connect();
-        const products = await Product.find();
-        return NextResponse.json(products, {status: 200});
-    } catch(error){
-        return new NextResponse(JSON.stringify("Error in fetching products.", error.message), {status: 500});
-    }
+
+export const GET = async (req) => {
+  try {
+    await connect();
+
+    const { searchParams } = new URL(req.url);
+    const page = parseInt(searchParams.get("page") || "1");
+    const limit = parseInt(searchParams.get("limit") || "12");
+    const skip = (page - 1) * limit;
+
+    const [products, total] = await Promise.all([
+      Product.find().skip(skip).limit(limit),
+      Product.countDocuments()
+    ]);
+
+    return NextResponse.json({ products, total }, { status: 200 });
+
+  } catch (error) {
+    return new NextResponse(JSON.stringify({ error: "Error fetching products", details: error.message }), { status: 500 });
+  }
 }
 
 export const POST = async (request) => {

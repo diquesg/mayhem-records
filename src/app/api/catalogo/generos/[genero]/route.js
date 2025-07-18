@@ -6,29 +6,26 @@ export async function GET(request, { params }) {
   try {
     await connect();
 
-    const {genero} = await params;
-    const decodedGenero = decodeURIComponent(genero);
-    console.log(decodedGenero);
+    const genero = decodeURIComponent(params.genero);
+    const { searchParams } = new URL(request.url);
+    const page = parseInt(searchParams.get('page') || '1');
+    const limit = parseInt(searchParams.get('limit') || '12');
+    const skip = (page - 1) * limit;
 
-    const genreProducts = await Product.find( {genre: {$regex: new RegExp(`^${decodedGenero}$`, 'i')} } );
+    const query = { genre: { $regex: new RegExp(`^${genero}$`, 'i') } };
 
-    if (genreProducts.length === 0) {
-      return NextResponse.json(
-        { error: `Nenhum produto encontrado para o gênero: ${decodedGenero}` },
-        { status: 404 }
-      );
-    }
+    const [products, total] = await Promise.all([
+      Product.find(query).skip(skip).limit(limit),
+      Product.countDocuments(query)
+    ]);
 
-    return NextResponse.json(genreProducts, { status: 200 });
-    
+    return NextResponse.json({ products, total }, { status: 200 });
+
   } catch (error) {
-    return NextResponse.json(
-      {
-        error: "Erro ao buscar produtos do gênero",
-        message: error.message,
-        genre: params.genre
-      },
-      { status: 500 }
-    );
+    return NextResponse.json({
+      error: "Erro ao buscar produtos do gênero",
+      message: error.message,
+      genre: params.genero
+    }, { status: 500 });
   }
 }

@@ -7,26 +7,25 @@ export async function GET(request, { params }) {
     await connect();
 
     const artista = decodeURIComponent(params.artista);
-    
-    const artistProducts = await Product.find( {artist: {$regex: new RegExp(`^${artista}$`, 'i')} } );
+    const { searchParams } = new URL(request.url);
+    const page = parseInt(searchParams.get('page') || '1');
+    const limit = parseInt(searchParams.get('limit') || '12');
+    const skip = (page - 1) * limit;
 
-    if (artistProducts.length === 0) {
-      return NextResponse.json(
-        { error: `Nenhum produto encontrado para o artista: ${artista}` },
-        { status: 404 }
-      );
-    }
+    const query = { artist: { $regex: new RegExp(`^${artista}$`, 'i') } };
 
-    return NextResponse.json(artistProducts, { status: 200 });
-    
+    const [products, total] = await Promise.all([
+      Product.find(query).skip(skip).limit(limit),
+      Product.countDocuments(query)
+    ]);
+
+    return NextResponse.json({ products, total }, { status: 200 });
+
   } catch (error) {
-    return NextResponse.json(
-      { 
-        error: "Erro ao buscar produtos do artista", 
-        message: error.message,
-        artist: params.artista
-      },
-      { status: 500 }
-    );
+    return NextResponse.json({
+      error: "Erro ao buscar produtos do artista",
+      message: error.message,
+      artist: params.artista
+    }, { status: 500 });
   }
 }
