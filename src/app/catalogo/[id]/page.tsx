@@ -111,14 +111,14 @@ export default function ProductPage() {
                     priority
                 />
                 {product.edition === "Deluxe" && 
-                <div className='absolute bg-amber-400 top-0 m-3 text-black font-bold flex items-center gap-1 p-1 border-2 border-amber-500 rounded-md text-sm tracking-tight'>
+                <div className='absolute bg-amber-400 top-81 right-0 m-3 text-black font-bold flex items-center gap-1 p-1 border-1 border-black px-2  rounded-md text-sm tracking-tight'>
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M6 16L10 12.95L14 16L12.5 11.05L16.5 8.2H11.6L10 3L8.4 8.2H3.5L7.5 11.05L6 16ZM10 20C8.61667 20 7.31667 19.7375 6.1 19.2125C4.88333 18.6875 3.825 17.975 2.925 17.075C2.025 16.175 1.3125 15.1167 0.7875 13.9C0.2625 12.6833 0 11.3833 0 10C0 8.61667 0.2625 7.31667 0.7875 6.1C1.3125 4.88333 2.025 3.825 2.925 2.925C3.825 2.025 4.88333 1.3125 6.1 0.7875C7.31667 0.2625 8.61667 0 10 0C11.3833 0 12.6833 0.2625 13.9 0.7875C15.1167 1.3125 16.175 2.025 17.075 2.925C17.975 3.825 18.6875 4.88333 19.2125 6.1C19.7375 7.31667 20 8.61667 20 10C20 11.3833 19.7375 12.6833 19.2125 13.9C18.6875 15.1167 17.975 16.175 17.075 17.075C16.175 17.975 15.1167 18.6875 13.9 19.2125C12.6833 19.7375 11.3833 20 10 20Z" fill="black"/>
                     </svg>DELUXE
                 </div>}
                 {product.edition === "Exclusive" && 
-                <div className='absolute bg-black top-0 m-3 font-bold flex items-center gap-1 p-1 border-2 border-purple-500 text-purple-100 text-sm rounded-md tracking-tight'>
-                    <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <div className='absolute bg-purple-700 top-81 right-0 m-3 font-bold flex items-center gap-1 p-1 border border-black text-purple-100 text-sm rounded-md tracking-tight'>
+                    <svg width="18" height="18" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M3.825 19L5.45 11.975L0 7.25L7.2 6.625L10 0L12.8 6.625L20 7.25L14.55 11.975L16.175 19L10 15.275L3.825 19Z" fill="oklch(94.6% 0.033 307.174)"/>
                     </svg>EXCLUSIVO
                 </div>}

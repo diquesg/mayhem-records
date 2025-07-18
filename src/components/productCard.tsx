@@ -33,9 +33,9 @@ export default function ProductCard(props: ProductCardProps){
                 </svg>
             </div>}
             {props.edition === "Exclusive" && <div onClick={() => setShowTooltip(prev => !prev)} className="absolute -top-2 right-7 z-5 shadow-lg rounded-xl shadow-black group">
-                {showTooltip && <span className="absolute lg:hidden -top-10 -right-10 bg-black text-white p-1 px-2 text-nowrap rounded-md border border-purple-500">Edição Exclusive</span>}
+                {showTooltip && <span className="absolute lg:hidden -top-10 -right-10 bg-black text-white p-1 px-2 text-nowrap rounded-md border border-purple-500">Edição Exclusiva</span>}
                 <span className="absolute -top-10 -right-10 hidden lg:block bg-black text-white p-1 px-2 text-nowrap rounded-md border border-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                    Edição Exclusive
+                    Edição Exclusiva
                 </span>
                 <svg width="32" height="40" viewBox="0 0 32 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g clipPath="url(#clip0_326_1463)">
@@ -51,7 +51,7 @@ export default function ProductCard(props: ProductCardProps){
             </div>}
             <div>
                 <div className="flex shrink">
-                    <Image src={props.img} alt="album cover" className="w-full rounded-xl sm:rounded-md mb-2 border border-neutral-700 aspect-square" width={300} height={300}/>
+                    <Link href={`/catalogo/${props._id}`} className="active:opacity-50"><Image src={props.img} alt="album cover" className="w-full rounded-xl sm:rounded-md mb-2 border border-neutral-700 aspect-square" width={300} height={300}/></Link>
                 </div>
                 <div className="flex flex-col grow">
                     <Link href={`/catalogo/${props._id}`} className="active:underline hover:underline"><h1 className="text-md leading-5 font-light line-clamp-2">{props.title}</h1></Link>
