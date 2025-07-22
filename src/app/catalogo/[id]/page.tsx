@@ -100,56 +100,71 @@ export default function ProductPage() {
     }
 
     return (
-        <main>
-            <div className='mt-20 m-4 pb-50 relative'>
+        <main className='pb-49 md:pb-27 md:mx-12 lg:mx-30 xl:mx-100'>
+            <div className='mt-20 xl:mt-16 m-4 relative md:flex md:gap-4 xl:rounded-xl xl:p-3'>
                 <Image 
                     src={product.img} 
                     alt="album cover" 
-                    className="w-full rounded-xl sm:rounded-md mb-5 border border-neutral-700 aspect-square" 
+                    className="w-full rounded-xl sm:rounded-md border border-neutral-700 aspect-square md:w-fit md:h-fit lg:w-100 lg:mr-5 my-3" 
                     width={300} 
                     height={300}
                     priority
                 />
-                {product.edition === "Deluxe" && 
-                <div className='absolute bg-amber-400 top-81 right-0 m-3 text-black font-bold flex items-center gap-1 p-1 border-1 border-black px-2  rounded-md text-sm tracking-tight'>
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M6 16L10 12.95L14 16L12.5 11.05L16.5 8.2H11.6L10 3L8.4 8.2H3.5L7.5 11.05L6 16ZM10 20C8.61667 20 7.31667 19.7375 6.1 19.2125C4.88333 18.6875 3.825 17.975 2.925 17.075C2.025 16.175 1.3125 15.1167 0.7875 13.9C0.2625 12.6833 0 11.3833 0 10C0 8.61667 0.2625 7.31667 0.7875 6.1C1.3125 4.88333 2.025 3.825 2.925 2.925C3.825 2.025 4.88333 1.3125 6.1 0.7875C7.31667 0.2625 8.61667 0 10 0C11.3833 0 12.6833 0.2625 13.9 0.7875C15.1167 1.3125 16.175 2.025 17.075 2.925C17.975 3.825 18.6875 4.88333 19.2125 6.1C19.7375 7.31667 20 8.61667 20 10C20 11.3833 19.7375 12.6833 19.2125 13.9C18.6875 15.1167 17.975 16.175 17.075 17.075C16.175 17.975 15.1167 18.6875 13.9 19.2125C12.6833 19.7375 11.3833 20 10 20Z" fill="black"/>
-                    </svg>DELUXE
-                </div>}
-                {product.edition === "Exclusive" && 
-                <div className='absolute bg-purple-700 top-81 right-0 m-3 font-bold flex items-center gap-1 p-1 border border-black text-purple-100 text-sm rounded-md tracking-tight'>
-                    <svg width="18" height="18" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M3.825 19L5.45 11.975L0 7.25L7.2 6.625L10 0L12.8 6.625L20 7.25L14.55 11.975L16.175 19L10 15.275L3.825 19Z" fill="oklch(94.6% 0.033 307.174)"/>
-                    </svg>EXCLUSIVO
-                </div>}
-                <div className='flex justify-between'>
-                    <div className='flex-row'>
-                        <h1 className='font-medium text-neutral-300 text-lg max-w-80'>{product.title}</h1>
-                        <h2 className='font-light text-neutral-400 py-1'>{product.artist}</h2>
+                <div className='md:min-h-full md:flex md:flex-col md:justify-between md:my-4 xl:my-6 xl:p-5xl:w-full'>
+                    <div className='flex justify-between md:gap-3'>
+                        <div className=''>
+                            <h1 className='font-medium text-neutral-300 text-lg max-w-80 md:w-fit md:text-xl xl:text-2xl'>{product.title}</h1>
+                            <h2 className='font-light text-neutral-400 py-1 md:text-neutral-300 xl:text-lg'>{product.artist}</h2>
+                        </div>
+                        <FavoriteButton product={product} />
                     </div>
-                    <FavoriteButton product={product} />
-                </div>
-                <div className='flex items-center justify-between'>
-                    <div className='flex gap-1 items-center font-extralight text-neutral-400'>
-                        <Image 
-                            src="/rating.png" 
-                            alt="rating" 
-                            width={100} 
-                            height={24} 
-                            className='max-h-fit'
-                        />
-                        <p className='text-wrap'><span className='text-neutral-300'>4.8</span> (231)</p>
+                        <div className='flex gap-1 items-center font-extralight text-neutral-400 mb-auto'>
+                            <Image 
+                                src="/rating.png" 
+                                alt="rating" 
+                                width={100} 
+                                height={24} 
+                                className='max-h-fit xl:w-30'
+                            />
+                            <p className='text-wrap'><span className='text-neutral-300 xl:text-md'>4.8</span> (231)</p>
+                        </div>
+                    <div className='flex relative items-center justify-between md:justify-normal md:flex-col md:items-start'>
+                        {product.edition === "Deluxe" && 
+                        <div className='absolute bg-amber-400 top-1 -right-3 m-3 md:static md:w-fit md:h-fit md:mx-0 md:mb-auto text-black font-bold flex items-center gap-1 p-1 border-1 border-black px-2  rounded-md text-sm tracking-tight'>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 16L10 12.95L14 16L12.5 11.05L16.5 8.2H11.6L10 3L8.4 8.2H3.5L7.5 11.05L6 16ZM10 20C8.61667 20 7.31667 19.7375 6.1 19.2125C4.88333 18.6875 3.825 17.975 2.925 17.075C2.025 16.175 1.3125 15.1167 0.7875 13.9C0.2625 12.6833 0 11.3833 0 10C0 8.61667 0.2625 7.31667 0.7875 6.1C1.3125 4.88333 2.025 3.825 2.925 2.925C3.825 2.025 4.88333 1.3125 6.1 0.7875C7.31667 0.2625 8.61667 0 10 0C11.3833 0 12.6833 0.2625 13.9 0.7875C15.1167 1.3125 16.175 2.025 17.075 2.925C17.975 3.825 18.6875 4.88333 19.2125 6.1C19.7375 7.31667 20 8.61667 20 10C20 11.3833 19.7375 12.6833 19.2125 13.9C18.6875 15.1167 17.975 16.175 17.075 17.075C16.175 17.975 15.1167 18.6875 13.9 19.2125C12.6833 19.7375 11.3833 20 10 20Z" fill="black"/>
+                            </svg>DELUXE
+                        </div>}
+                        {product.edition === "Exclusive" && 
+                        <div className='absolute bg-purple-700 top-1 -right-3 m-3 md:static md:w-fit md:h-fit md:mx-0 md:mb-auto md:px-2 font-bold flex items-center gap-1 p-1 border border-black text-purple-100 text-sm rounded-md tracking-tight'>
+                            <svg width="18" height="18" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M3.825 19L5.45 11.975L0 7.25L7.2 6.625L10 0L12.8 6.625L20 7.25L14.55 11.975L16.175 19L10 15.275L3.825 19Z" fill="oklch(94.6% 0.033 307.174)"/>
+                            </svg>EXCLUSIVO
+                        </div>}
+                    <div className=' md:mb-5.5'>
+                        <p className='text-3xl font-extrabold text-white text-right md:text-left mt-3'>R$ {product.price.toFixed(2)}</p>
+                        <button className='bg-blue-600 p-3 hidden truncate rounded-full text-white font-bold md:flex md:mt-3 gap-3 px-4 md:rounded-lg shadow-md shadow-neutral-950 active:scale-95 active:bg-blue-800 cursor-pointer hover:bg-blue-800' onClick={handleAddToCart}>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 1.5H5L7.68 14.89C7.77144 15.3504 8.02191 15.764 8.38755 16.0583C8.75318 16.3526 9.2107 16.509 9.68 16.5H19.4C19.8693 16.509 20.3268 16.3526 20.6925 16.0583C21.0581 15.764 21.3086 15.3504 21.4 14.89L23 6.5H6M10 21.5C10 22.0523 9.55228 22.5 9 22.5C8.44772 22.5 8 22.0523 8 21.5C8 20.9477 8.44772 20.5 9 20.5C9.55228 20.5 10 20.9477 10 21.5ZM21 21.5C21 22.0523 20.5523 22.5 20 22.5C19.4477 22.5 19 22.0523 19 21.5C19 20.9477 19.4477 20.5 20 20.5C20.5523 20.5 21 20.9477 21 21.5Z" 
+                                    stroke="white" 
+                                    strokeWidth="2" 
+                                    strokeLinecap="round" 
+                                    strokeLinejoin="round"
+                                />
+                            </svg>
+                            Adicionar ao Carrinho
+                        </button>
                     </div>
-                    <p className='text-3xl font-extrabold text-white text-right'>R$ {product.price.toFixed(2)}</p>
+                    </div>
                 </div>
 
-                <section className='mt-5 border-t border-neutral-700 pt-5'>
-                    <h3 className='font-medium text-lg pb-3'>Descrição</h3>
+            </div>
+                <section className='mt-5 border-t border-neutral-700 xl:border-none pt-5 mx-4 md:mt-0'>
+                    <h3 className='font-medium text-xl pb-3'>Descrição</h3>
                     <p className='text-neutral-400 leading-5 whitespace-pre-line'>{product.description}</p>
                 </section>
-            </div>
             
-            <div className='fixed bottom-21 bg-[#131313] border-t border-t-neutral-600 rounded-t-2xl items-center h-21 w-full p-5 flex justify-between'>
+            <div className='fixed bottom-21 bg-[#131313] border-t border-t-neutral-600 rounded-t-2xl items-center h-21 w-full p-5 flex justify-between md:hidden'>
                 <p className='text-2xl font-bold'>R$ {product.price.toFixed(2)}</p>
                 <button className='bg-blue-600 p-3 truncate rounded-full text-white font-bold flex gap-3 px-4 shadow-md shadow-neutral-950 active:scale-95 active:bg-blue-800' onClick={handleAddToCart}>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -165,11 +180,11 @@ export default function ProductPage() {
             </div>
             <BackButton />
             {cartAlert && (
-                <div className='fixed bottom-40 right-0 h-fit rounded-md z-40 bg-neutral-950 border m-3 w-fit'>
+                <div className='fixed bottom-40 md:bottom-20 right-0 h-fit rounded-md z-40 bg-neutral-950 border m-3 w-fit shadow-lg shadow-[#050505]'>
                     <Progress value={progressValue} className=" rounded-none rounded-t-md border-b"/>
                     <div className='gap-3 p-3 flex justify-center items-center'>
                         <ShoppingCart/>
-                        <p>Produto adicionado ao carrinho.</p>
+                        <p className='md:text-lg'>Produto adicionado ao carrinho.</p>
                     </div>
                 </div>
             )}

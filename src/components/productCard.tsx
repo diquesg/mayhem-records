@@ -14,7 +14,7 @@ export default function ProductCard(props: ProductCardProps){
     const [showTooltip, setShowTooltip] = useState(false);
 
     return(
-        <article className="border min-h-79 relative border-neutral-700 p-2 rounded-2xl sm:rounded-lg h-full flex flex-col shadow-md shadow-black w-full">
+        <article className="border min-h-79 relative border-neutral-700 p-2 rounded-2xl sm:rounded-lg h-full flex flex-col shadow-md shadow-black w-full lg:w-fit lg:shadow-xl">
             {props.edition === "Deluxe" && <div onClick={() => setShowTooltip(prev => !prev)} className="absolute -top-2 right-7 z-5 shadow-lg rounded-xl shadow-black group">
                 {showTooltip && <span className="absolute lg:hidden -top-10 -right-10 bg-black text-white p-1 px-2 text-nowrap rounded-md border border-amber-400">Edição Deluxe</span>}
                 <span className="absolute -top-10 -right-10 hidden lg:block bg-black text-white p-1 px-2 text-nowrap rounded-md border border-amber-400 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
@@ -51,10 +51,10 @@ export default function ProductCard(props: ProductCardProps){
             </div>}
             <div>
                 <div className="flex shrink">
-                    <Link href={`/catalogo/${props._id}`} className="active:opacity-50"><Image src={props.img} alt="album cover" className="w-full rounded-xl sm:rounded-md mb-2 border border-neutral-700 aspect-square" width={300} height={300}/></Link>
+                    <Link href={`/catalogo/${props._id}`} className="active:opacity-50"><Image src={props.img} alt="album cover" className="w-full lg:w-60 rounded-xl sm:rounded-md mb-2 border border-neutral-700 aspect-square" width={300} height={300}/></Link>
                 </div>
-                <div className="flex flex-col grow">
-                    <Link href={`/catalogo/${props._id}`} className="active:underline hover:underline"><h1 className="text-md leading-5 font-light line-clamp-2">{props.title}</h1></Link>
+                <div className="flex flex-col grow lg:max-w-60">
+                    <Link href={`/catalogo/${props._id}`} className="active:underline hover:underline"><h1 className="text-md leading-5 font-light line-clamp-2 ">{props.title}</h1></Link>
                     <p className="font-extralight text-sm pt-1">{props.artist}</p>
                 </div>
             </div>

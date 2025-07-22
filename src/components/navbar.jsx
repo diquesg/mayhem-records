@@ -17,8 +17,16 @@ export default function Navbar(){
     const noTopBorder = pathname === `/catalogo/${id}` || pathname === "/carrinho"
 
     return(
-    <nav className={`fixed z-10 bottom-0 bg-[#131313] w-full h-23 ${noTopBorder ? "border-t-none" : "border-t"} border-neutral-700`}>
-        <ul className="bg-[#141414] shadow-lg shadow-neutral-950 grid grid-cols-5 items-center m-2 border min-h-19 rounded-xl text-[12px]">
+    <nav className={`fixed z-10 bottom-0 bg-[#131313] w-full h-23 ${noTopBorder ? "border-t-none" : "border-t"} border-neutral-700 md:bg-transparent md:border-none`}>
+        <ul className="hidden fixed top-4.5 right-5 md:flex gap-3 text-md lg:gap-8">
+            <li className="flex gap-1"><Home/>Início</li>
+            <li className="flex gap-1"><SearchIcon/>Buscar</li>
+            <li className="flex gap-1"><Disc3/>Catálogo</li>
+            <li className="flex gap-1"><ShoppingCartIcon/>Carrinho</li>
+            <li className="flex gap-1"><User2/>Conta</li>
+        </ul>
+
+        <ul className="bg-[#141414] shadow-lg shadow-neutral-950 grid grid-cols-5 items-center m-2 border min-h-19 rounded-xl text-[12px] md:hidden">
             <li className="m-auto">
                 <button className="justify-items-center">
                     <Link href="/" className="flex flex-col items-center gap-1 active:scale-110">
