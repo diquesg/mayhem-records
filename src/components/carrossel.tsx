@@ -18,20 +18,19 @@ export default function Carrossel(){
   <CarouselContent>
     
       <CarouselItem className="flex justify-center items-center">
-          <div className="relative w-full h-fit max-h-145 aspect-[3/1]">
+          <div className="relative w-full max-h-[371px] aspect-[3/1]">
             <Link href="/catalogo">
-              <Image src="/home-banner.png" alt="banner" fill style={{ objectFit: 'cover', objectPosition: 'center' }}priority className=""/>
+              <Image src="/home-banner.png" alt="banner" fill style={{ objectFit: 'cover', objectPosition: 'center' }}priority className="h-35 lg:h-fit"/>
             </Link>
           </div>
       </CarouselItem>
-    
-    <CarouselItem className="flex justify-center items-center">
-      <div className="relative w-full h-fit max-h-145 aspect-[3/1]">
-        <Link href="/catalogo">
-          <Image src="/home-banner-3.png" alt="banner" fill style={{ objectFit: 'cover', objectPosition: 'center' }}priority className=""/>
-        </Link>
-      </div>
-    </CarouselItem>
+      <CarouselItem className="flex justify-center items-center">
+          <div className="relative w-full max-h-[371px] aspect-[3/1]">
+            <Link href="/catalogo">
+              <Image src="/home-banner-3.png" alt="banner" fill style={{ objectFit: 'cover', objectPosition: 'center' }}priority className="h-35 lg:h-fit"/>
+            </Link>
+          </div>
+      </CarouselItem>
   </CarouselContent>
   <CarouselPrevious />
   <CarouselNext className="-ml-50" />

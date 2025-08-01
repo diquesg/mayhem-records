@@ -22,11 +22,11 @@ export const metadata: Metadata = {
 export default function RootLayout({children,}: Readonly<{children: React.ReactNode;}>) {
 
   return (
-    <html lang="pt-br" className={interFont.className} suppressHydrationWarning>
+    <html lang="pt-br" className={`${interFont.className}`} suppressHydrationWarning>
       <body>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          <HeaderLogo/>
           <CartProvider>
+          <HeaderLogo/>
             <FavoritesProvider>
               {children}
             </FavoritesProvider>

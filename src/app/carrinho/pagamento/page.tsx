@@ -2,7 +2,7 @@
 "use client"
 
 import { useCart } from '@/lib/contexts/cartContext';
-import { Check, Clipboard, CreditCard, Disc3, MapPin, QrCode, User2 } from 'lucide-react';
+import { Check, Clipboard, CreditCard, Disc3, FileText, MapPin, Package, QrCode, ShoppingBag, User2 } from 'lucide-react';
 import BackButton from '@/src/components/backButton';
 import Link from 'next/link';
 import { Label } from "@/components/ui/label"
@@ -14,6 +14,7 @@ import Image from 'next/image';
 import { processPayment } from '@/src/components/PaymentProcessor';
 import { useState } from 'react';
 import { Progress } from "@/components/ui/progress"
+import Footer from '@/src/components/footer';
 
 export default function Pagamento(){
     const { total, itemCount, cartItems, clearCart } = useCart();
@@ -122,7 +123,7 @@ export default function Pagamento(){
     if(itemCount === 0){
         return(
                 <div className="mx-auto mt-79 text-center h-full">
-                <h1 className='flex gap-2 text-xl items-center justify-center font-bold p-3 mb-1 fixed top-0 z-20 mt-1 w-full'><CreditCard strokeWidth={2} width={28} height={28}/>Pagamento</h1>
+                <h1 className='flex gap-2 text-xl items-center justify-center font-bold p-3 mb-1 fixed top-0 z-20 mt-1 w-full md:hidden'><CreditCard strokeWidth={2} width={28} height={28}/>Pagamento</h1>
                 <BackButton/>
                 <Disc3 className='mx-auto my-2 animate-spin' width={40} height={40}/>
                 <h1 className="text-2xl font-bold mb-1 mt-5">Ops! Seu carrinho está vazio.</h1>
@@ -133,12 +134,14 @@ export default function Pagamento(){
     }
 
     return(
-        <div>
-            <h1 className='fixed top-0 z-20 justify-center w-full flex text-xl font-bold gap-2 items-center mt-4'><CreditCard width={28} height={28} strokeWidth={2}/> Pagamento</h1>
+        <>
+        <div className='md:mx-60 md:flex md:gap-12'>
+            <h1 className='fixed top-0 z-20 justify-center w-full flex text-xl font-bold gap-2 items-center mt-4 md:hidden'><CreditCard width={28} height={28} strokeWidth={2}/> Pagamento</h1>
 
-            <main className='mt-16'>
+            <main className='mt-16 md:mt-50 md:w-full md:bg-[#101010] md:border md:rounded-lg md:p-6 md:mb-12'>
+                <h1 className='justify-start text-white w-full flex text-xl font-medium gap-2 items-center mb-4'><CreditCard width={28} height={28} strokeWidth={2}/>PAGAMENTO</h1>
                 <section className='border-b pb-5 pt-3'>
-                    <div className='mx-3'>
+                    <div className='mx-3 md:mx-0 md:pb-4'>
                         <div className='flex gap-1 items-center text-white justify-between'>
                             <div className='flex gap-1 items-center'>
                                 <MapPin width={20} height={20}/>
@@ -161,7 +164,7 @@ export default function Pagamento(){
                     </div>
                 </section>
                 <section className='border-b pb-5 pt-3'>
-                    <div className='mx-3'>
+                    <div className='mx-3 md:mx-0 md:py-7'>
                         <div className='flex gap-1 items-center text-white justify-between'>
                             <div className='flex gap-1 items-center'>
                                 <CreditCard width={20} height={20}/>
@@ -197,8 +200,8 @@ export default function Pagamento(){
                         </div>
                     </div>
                 </section>
-                <section className='border-b pb-5 pt-3'>
-                    <div className='mx-3'>
+                <section className='border-b md:border-none pb-5 pt-3 md:py-7'>
+                    <div className='mx-3 md:mx-0'>
                         <div className='flex gap-1 items-center text-white justify-between'>
                             <div className='flex gap-1'>
                                 <User2 width={20} height={20}/>
@@ -272,14 +275,14 @@ export default function Pagamento(){
                             setShowPixQrCode(false);
                             setTransactionDetails(null);
                         }}
-                        className="flex-1 py-2 border border-neutral-600 rounded-lg"
+                        className="flex-1 py-2 border border-neutral-600 rounded-lg active:scale-90 hover:scale-105 hover:bg-neutral-700 transition-all"
                         >
                         Cancelar
                         </button>
                         <button
                         onClick={confirmPixPayment}
                         disabled={isProcessing}
-                        className={`flex-1 py-2 rounded-lg text-black font-semibold active:bg-[#297e75] active:scale-90 items-center ${
+                        className={`flex-1 py-2 rounded-lg text-black font-semibold active:bg-[#297e75] active:scale-90 hover:scale-105 items-center transition-all ${
                             isProcessing ? 'bg-neutral-500' : 'bg-[#4DB5AB] hover:bg-[#297e75]'
                         }`}
                         >
@@ -330,7 +333,7 @@ export default function Pagamento(){
                         <div className="text-center">
                             <Link 
                             href="/catalogo" onClick={() => clearCart()}
-                            className="inline-block bg-blue-600 hover:bg-blue-700 active:scale-95 active:bg-blue-800 text-white py-3 px-6 rounded-full font-medium"
+                            className="inline-block bg-blue-600 hover:bg-blue-700 active:scale-95 active:bg-blue-800 text-white py-3 px-6 rounded-full md:rounded-md hover:scale-105 transition-all font-medium"
                             >
                             Continuar Comprando
                             </Link>
@@ -344,30 +347,31 @@ export default function Pagamento(){
                 </div>
                 )}
             </main>
-          <div className="bg-[#171717] rounded-lg p-6 border-t border-neutral-600 fixed z-40 w-full left-0 bottom-0 rounded-b-none lg:static lg:rounded-md">
-            <h2 className="text-xl font-bold mb-4">Resumo do Pedido</h2>
+
+          <div className="bg-[#171717] md:bg-[#101010] rounded-lg p-6 md:p-8 md:min-w-110 border-t border-neutral-600 fixed z-40 w-full md:w-160 md:border md:border-neutral-800 left-0 bottom-0 rounded-b-none md:z-0 md:mt-50 md:h-fit lg:static lg:rounded-md">
+            <h1 className='flex gap-2 text-xl items-center justify-start font-medium text-white mb-5 w-full'><FileText strokeWidth={2} width={28} height={28}/>RESUMO</h1>
             
             <div className="space-y-3">
-              <div className="flex justify-between">
+              <div className="flex justify-between text-lg">
                 <span>Subtotal ({itemCount} itens)</span>
-                <span>R$ {total.toFixed(2)}</span>
+                <span className='text-white font-medium'>R$ {total.toFixed(2)}</span>
               </div>
               
-              <div className="flex justify-between">
+              <div className="flex justify-between text-lg">
                 <span>Frete</span>
                 <span>Grátis</span>
               </div>
               
-              <div className="flex border-t items-baseline border-neutral-700 justify-between pt-2 gap-3">
-                    <div className='flex flex-col items-center mt-3'>
-                        <span className='mr-auto'>Total</span>
-                        <span className='truncate font-bold text-2xl max-w-fit'>R$ {total.toFixed(2)}</span>
+              <div className="flex md:flex-col items-baseline border-neutral-700 justify-between pt-2 gap-3">
+                    <div className='flex flex-col mt-8'>
+                        <h2 className='text-md'>Total</h2>
+                        <p className="text-3xl text-white font-bold">R$ {total.toFixed(2)}</p>
                     </div>
                     {paymentMethod === 'pix' ? (
                         <button 
                             onClick={handlePixPayment}
                             disabled={isProcessing}
-                            className={`mt-auto ml-auto w-fit font-bold px-5 truncate text-lg text-black p-3 rounded-full flex gap-3 justify-center items-center ${
+                            className={`mt-auto ml-auto w-fit md:w-full font-bold px-5 truncate text-lg text-black p-3 rounded-full flex gap-3 justify-center items-center active:scale-90 hover:scale-104 transition-all md:border-2 md:border-neutral-200 md:p-2 md:rounded-md ${
                             isProcessing 
                                 ? 'bg-neutral-500 cursor-not-allowed' 
                                 : 'bg-[#4DB5AB] hover:bg-[#297e75]'
@@ -386,12 +390,32 @@ export default function Pagamento(){
                             )}
                         </button>
                         ) : (
-                            <button className={`mt-auto w-fit truncate bg-blue-600 font-bold text-lg hover:bg-blue-700 text-white p-3 px-5 rounded-full flex gap-2 justify-center items-center ${isProcessing ? 'bg-neutral-500 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'}`} onClick={handlePayment} disabled={isProcessing}>{isProcessing ? (<Disc3 className='animate-spin'/>) :(<Check />)} {isProcessing ? "Processando..." : "Finalizar Compra"}</button>
+                            <button className={`mt-auto w-fit md:w-full truncate bg-white font-bold text-lg hover:bg-neutral-400 active:scale-90 hover:scale-104 transition-all md:border-2 md:border-[#A5A1A1] active:bg-neutral-400 text-black p-3 px-5 md:p-2 rounded-full md:rounded-md flex gap-2 justify-center items-center ${isProcessing ? 'bg-neutral-500 cursor-not-allowed' : ''}`} onClick={handlePayment} disabled={isProcessing}>{isProcessing ? (<Disc3 className='animate-spin'/>) :(<Check strokeWidth={3}/>)} {isProcessing ? "Processando..." : "Finalizar Compra"}</button>
                         )}
+                        <div className='mt-12'>
+              <span className='flex items-center gap-2 text-white'>
+                <ShoppingBag/>
+                <h2 className=' font-bold'>Pagamentos Seguros</h2>
+              </span>
+              <p className='text-sm mt-4 text-neutral-400 leading-6.5 font-light'>
+                Conte com a segurança dos seus dados, garantida por nossos parceiros de pagamento.
+              </p>
+            </div>
+            <div className='mt-12'>
+              <span className='flex items-center gap-2 text-white'>
+                <Package/>
+                <h2 className=' font-bold'>Entrega rápida</h2>
+              </span>
+              <p className='text-sm mt-4 text-neutral-400 leading-6.5 font-light'>
+                Cupom de R$5,00 por entrega atrasada · Reembolso se itens chegarem com dano · Reembolso se o pacote for perdido · Reembolso se não for entregue em 50 dias.
+              </p>
+            </div>
               </div>
             </div>
           </div>
           <BackButton/>
         </div>
+        <Footer/>
+        </>
     )
 }
