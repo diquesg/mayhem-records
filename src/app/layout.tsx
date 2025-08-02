@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "../components/theme-provider";
-import Navbar from "@/src/components/navbar"
+import Navbar from "../components/navbar";
 import HeaderLogo from "../components/header-logo";
 import { CartProvider } from "@/lib/contexts/cartContext";
 import { FavoritesProvider } from "@/lib/contexts/favoritesContext";
+import { SearchHistoryProvider } from "@/lib/contexts/searchHistoryContext";
 
 
 const interFont = Inter({
@@ -26,11 +27,13 @@ export default function RootLayout({children,}: Readonly<{children: React.ReactN
       <body>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <CartProvider>
-          <HeaderLogo/>
-            <FavoritesProvider>
-              {children}
-            </FavoritesProvider>
-          <Navbar/>
+            <SearchHistoryProvider>
+              <FavoritesProvider>
+                <HeaderLogo/>
+                {children}
+                <Navbar/>
+              </FavoritesProvider>
+            </SearchHistoryProvider>
           </CartProvider>
         </ThemeProvider>
       </body>

@@ -41,7 +41,6 @@ export default function SettingsPage() {
           </div>
         </div>
 
-        {/* Notificações */}
         <div className="border rounded-lg p-4 bg-neutral-900">
           <h2 className="flex items-center gap-2 font-medium mb-4 text-white text-lg">
             <Bell size={20} />
@@ -128,7 +127,6 @@ export default function SettingsPage() {
           </div>
         </div>
 
-        {/* Idioma */}
         <div className="border rounded-lg p-4 bg-neutral-900">
           <h2 className="flex items-center gap-2 font-medium mb-4 text-lg text-white">
             <Globe size={20} />

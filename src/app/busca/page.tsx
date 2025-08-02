@@ -4,24 +4,36 @@ import { FormEvent, useEffect, useState } from 'react';
 import { ProductType } from '@/lib/types/Product';
 import ProductCard from '@/src/components/productCard';
 import { Disc3, Search } from 'lucide-react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useSearchHistory } from '@/lib/contexts/searchHistoryContext';
+import BackButton from '@/src/components/backButton';
+import Footer from '@/src/components/footer';
 
 
 type SortType = 'price' | 'relevance' | 'sales';
 type SortDirection = 'normal' | 'asc' | 'desc';
 
 export default function Busca() {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const { addToHistory } = useSearchHistory();
+  
   const [query, setQuery] = useState('');
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<ProductType[]>([]);
   const [warning, setWarning] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [activeSort, setActiveSort] = useState<SortType | null>(null);
   const [sortDirection, setSortDirection] = useState<SortDirection>('normal');
-  const [activeSearch, setActiveSearch] = useState(false);
+  const [totalProducts, setTotalProducts] = useState(0);
+  const [debouncedQuery, setDebouncedQuery] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [limit] = useState(12);
 
 
-    const fetchProducts = async () => {
-
-      if (!query.trim()){
+    const fetchProducts = async (page: number = 1) => {
+      const searchQuery = debouncedQuery || query;
+      
+      if (!searchQuery.trim()){
         setWarning(true);
         return;
       }
@@ -29,8 +41,10 @@ export default function Busca() {
       setIsLoading(true);
       try {
         const params = new URLSearchParams({
-          query: query.trim(),
+          query: searchQuery.trim(),
           ...(activeSort && { sort: `${activeSort}_${sortDirection}` }),
+          page: page.toString(),
+          limit: limit.toString()
         });
 
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/busca?${params}`);
@@ -40,6 +54,10 @@ export default function Busca() {
           
         const data = await res.json();
         setProducts(data.products);
+        setTotalProducts(data.pagination?.totalItems || data.products.length);
+        setCurrentPage(page);
+        
+        addToHistory(searchQuery.trim());
       } catch (error) {
         console.error('Erro:', error);
         setWarning(true);
@@ -50,15 +68,55 @@ export default function Busca() {
 
   async function handleSearch(e: FormEvent) {
     e.preventDefault();
-    fetchProducts();
+    if (!query.trim()) {
+      setWarning(true);
+      return;
+    }
+    
+    const params = new URLSearchParams(searchParams);
+    params.set('q', query);
+    params.set('page', '1');
+    router.push(`/busca?${params.toString()}`);
+    fetchProducts(1);
   }
+  
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (query.trim()) {
+        setDebouncedQuery(query);
+      }
+    }, 500);
+    
+    return () => clearTimeout(timer);
+  }, [query]);
 
   useEffect(() => {
-    if (query.trim()) {
-      fetchProducts();
+    const urlQuery = searchParams.get('q');
+    const urlPage = searchParams.get('page');
+    
+    if (urlQuery && urlQuery !== query) {
+      setQuery(urlQuery);
+      setDebouncedQuery(urlQuery);
+    }
+    
+    if (urlPage) {
+      setCurrentPage(parseInt(urlPage));
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [query, activeSort, sortDirection]);
+  }, [searchParams]);
+
+  useEffect(() => {
+    if (debouncedQuery.trim()) {
+      fetchProducts(currentPage);
+      const params = new URLSearchParams(searchParams);
+      params.set('q', debouncedQuery);
+      if (!params.has('page')) {
+        params.set('page', currentPage.toString());
+      }
+      router.push(`/busca?${params.toString()}`);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [debouncedQuery, activeSort, sortDirection, currentPage]);
 
 
   const toggleSort = (type: SortType) => {
@@ -72,32 +130,55 @@ export default function Busca() {
         return 'normal';
       });
     }
+
+    setCurrentPage(1);
+    
+    const params = new URLSearchParams(searchParams);
+    params.set('page', '1');
+    if (debouncedQuery) {
+      params.set('q', debouncedQuery);
+    }
+    router.push(`/busca?${params.toString()}`);
   }
 
-  console.log(activeSearch);
-
   return (
-    <main className='pt-19 pb-23'>
-      <form
-        onSubmit={e => {
-          setActiveSearch(false);
-          handleSearch(e);
-        }}
-        className="z-20 fixed top-0 border-b w-full h-16 flex items-center p-3 gap-2 bg-[#0D0D0D] border-neutral-700"
-      >
-        <input
-          onFocus={() => setActiveSearch(true)}
-          onBlur={() => setActiveSearch(false)}
-          value={query}
-          onChange={e => setQuery(e.target.value)}
-          placeholder="O que você quer ouvir hoje?"
-          className={`border bg-black rounded-full w-full max-h-full p-5 text-neutral-300 border-neutral-700 ${warning === true ? "border-red-500" : ""}`}
-        />
-        <button type="submit" className='bg-blue-600 rounded-full h-fit p-2 active:bg-blue-400'><Search size={20} /></button>
-      </form>
+    <>
+    <main className='pt-16 lg:pt-36 pb-23'>
+      <BackButton />
       
+      <div className="border-b border-neutral-700 mb-6">
+        <div className="px-4 md:px-12 xl:px-30 2xl:px-60 py-6 flex flex-col gap-4">
+          
+          <form
+            onSubmit={handleSearch}
+            className="flex items-center gap-2 w-full md:max-w-120"
+          >
+            <input
+              value={query}
+              onChange={e => {
+                setQuery(e.target.value);
+                setWarning(false);
+              }}
+              placeholder="O que você quer ouvir hoje? (digite para buscar em tempo real)"
+              className={`border bg-black rounded-full w-full p-3 text-neutral-300 border-neutral-700 ${warning ? "border-red-500" : ""}`}
+              autoFocus
+            />
+            <button type="submit" className='bg-blue-600 rounded-full h-fit p-3 active:bg-blue-400'>
+              <Search size={20} />
+            </button>
+          </form>
+        </div>
+      </div>
       
-      <div className="flex gap-3 -mt-3 p-3 fixed z-10 bg-[#131313] w-full h-fit border-b border-neutral-800">
+      <div className="flex justify-between items-center px-4 md:px-12 xl:px-30 2xl:px-60 mb-4">
+        {products.length > 0 && (
+          <p className="text-lg text-neutral-400 font-light">
+            Exibindo {products.length} de {totalProducts} resultados para &quot;{query}&quot;
+          </p>
+        )}
+      </div>
+      
+      <div className="flex gap-3 px-4 md:px-12 xl:px-30 2xl:px-60 mb-6 bg-[#131313] h-fit">
       
       
         <button onClick={() => toggleSort('relevance')} className={`rounded-full flex items-center gap-2 ${products.length < 2 ? "opacity-50 cursor-not-allowed" : ""}`} disabled={products.length < 2}>
@@ -163,17 +244,75 @@ export default function Busca() {
 
       </div>
       
-        {products.length === 0 && <div className='flex flex-col text-center items-center text-neutral-600 gap-2 w-full mt-75'><Disc3 width={40} height={40}/> <p className='text-lg font-semibold'>Pesquise seu álbum favorito!</p></div>}
-      <section className={`m-3 mt-14 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-3 lg:gap-4 justify-items-center ${isLoading ? "opacity-50" : ""}`}>
-        {
-        products.map((product: ProductType) => <ProductCard key={product._id} title={product.title} artist={product.artist} img={product.img} price={product.price} _id={product._id} edition={product.edition}/>)
-      }
+      {products.length === 0 && !isLoading && (
+        <div className='flex flex-col text-center items-center text-neutral-600 gap-4 w-full mt-20 mb-20'>
+          <Disc3 width={60} height={60}/> 
+          <p className='text-xl font-semibold'>Nenhum resultado encontrado</p>
+          {query && <p className='text-neutral-400'>Não encontramos resultados para &quot;{query}&quot;</p>}
+          {!query && <p className='text-lg font-semibold'>Pesquise seu álbum favorito!</p>}
+        </div>
+      )}
+      
+      <section className={`px-4 md:px-12 xl:px-30 2xl:px-60 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-3 lg:gap-4 justify-items-center ${isLoading ? "opacity-50" : ""}`}>
+        {products.map((product: ProductType) => (
+          <ProductCard 
+            key={product._id} 
+            title={product.title} 
+            artist={product.artist} 
+            img={product.img} 
+            price={product.price} 
+            _id={product._id} 
+            edition={product.edition}
+          />
+        ))}
       </section>
+
+      {totalProducts > limit && products.length > 0 && (
+        <div className="flex justify-between mt-5 px-4 md:px-12 xl:px-30 2xl:px-60 bg-neutral-900 items-center gap-3 py-4 rounded-lg border border-neutral-700">
+          <button
+            className="px-3 py-1 border border-neutral-500 rounded-full active:bg-neutral-800 hover:bg-neutral-800 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
+            disabled={currentPage === 1}
+            onClick={() => {
+              const newPage = currentPage - 1;
+              fetchProducts(newPage);
+              const params = new URLSearchParams(searchParams);
+              params.set('page', newPage.toString());
+              router.push(`/busca?${params.toString()}`);
+            }}
+          >
+            Anterior
+          </button>
+          
+          <span className="text-sm text-neutral-400">
+            Página {currentPage} de {Math.ceil(totalProducts / limit)}
+          </span>
+
+          <button
+            className="px-3 py-1 border border-neutral-500 rounded-full active:bg-neutral-800 hover:bg-neutral-800 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
+            disabled={currentPage === Math.ceil(totalProducts / limit)}
+            onClick={() => {
+              const newPage = currentPage + 1;
+              fetchProducts(newPage);
+              const params = new URLSearchParams(searchParams);
+              params.set('page', newPage.toString());
+              router.push(`/busca?${params.toString()}`);
+            }}
+          >
+            Próxima
+          </button>
+        </div>
+      )}
+      
       {isLoading && (
-        <div className="text-center py-10">
-          <p>Carregando...</p>
+        <div className="text-center py-10 mb-10">
+          <div className="flex flex-col items-center gap-2">
+            <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500"></div>
+            <p>Carregando resultados...</p>
+          </div>
         </div>
       )}
     </main>
+    <Footer/>
+    </>
   );
 }
