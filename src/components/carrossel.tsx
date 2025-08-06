@@ -8,14 +8,21 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import Autoplay from "embla-carousel-autoplay"
 import Link from "next/link";
 import Image from "next/image";
 
+const usedAutoplay = Autoplay;
+
 export default function Carrossel(){
+
+  const plugin = React.useRef(
+      usedAutoplay({ delay: 4000 })
+    );
+
+
     return(
-        <Carousel className="overflow-hidden border-b border-neutral-700 bg-neutral-950" opts={{ loop: true, slidesToScroll: "auto", align: "center" }} plugins={[Autoplay({ delay: 4000 })]}>
+        <Carousel className="overflow-hidden border-b border-neutral-700 bg-neutral-950" opts={{ loop: true, slidesToScroll: "auto", align: "center" }} plugins={[plugin.current]}>
   <CarouselContent>
     
       <CarouselItem className="flex justify-center items-center">
