@@ -8,6 +8,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import Autoplay from "embla-carousel-autoplay"
 import Link from "next/link";
 import Image from "next/image";

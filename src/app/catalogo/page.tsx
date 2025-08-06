@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 import { ProductType } from '@/lib/types/Product';
 import { FormEvent, useEffect, useState } from 'react';
