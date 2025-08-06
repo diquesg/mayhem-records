@@ -25,7 +25,7 @@ export default function HeaderLogo(){
         <>
             <header className={` bg-[#0D0D0D] flex items-center justify-center lg:justify-between gap-2 h-16 lg:h-36 lg:px-10 xl:px-60 border-b-1 border-b-neutral-700 fixed w-full top-0 z-10 ${isSearchPage? "hidden" : ""}`}>
               <div className='flex items-center gap-2 md:ml-5'>
-                <Link href="/"><Image alt='logo' width={462} height={84} src="/logo2.svg" className={`${shouldHide ? "hidden md:inline" : ""} size-65 lg:size-full lg:min-w-60`}/></Link>
+                <Link href="/"><Image alt='logo' width={462} height={84} src="/logo2.svg" className={`${shouldHide ? "hidden md:inline" : ""} size-65 h-14 lg:size-full lg:min-w-60`}/></Link>
               </div>
                       <ul className="lg:text-md xl:text-lg hidden right-5 lg:flex gap-1 xl:gap-6">
                           <li><button className="hover:scale-90 active:scale-80 transition-all"><Link href="/"><span className={`flex gap-2 ${pathname === "/" ? 'bg-white text-black' : 'bg-transparent'} p-3 rounded-xl`}><Home/>Início</span></Link></button></li>
