@@ -66,7 +66,6 @@ export default function Catalogo() {
   
     useEffect(() => {
         fetchProducts(currentPage);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [query, activeSort, sortDirection, currentPage]);
   
     

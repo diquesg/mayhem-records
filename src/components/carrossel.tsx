@@ -8,11 +8,11 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
-import Autoplay from "embla-carousel-autoplay"
+import _Autoplay from "embla-carousel-autoplay"
 import Link from "next/link";
 import Image from "next/image";
 
-const usedAutoplay = Autoplay;
+const usedAutoplay = _Autoplay;
 
 export default function Carrossel(){
 
