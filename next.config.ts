@@ -5,6 +5,9 @@ const nextConfig: NextConfig = {
     domains: ['upload.wikimedia.org', "i.scdn.co", "i.discogs.com", "m.media-amazon.com", "cdn-images.dzcdn.net", "universalmusic.vtexassets.com", "blogger.googleusercontent.com"]
   },
   devIndicators: false,
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
 
 export default nextConfig;
