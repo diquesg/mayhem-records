@@ -110,9 +110,9 @@ export default function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
               </button>
             </div>
             
-            <ul className="space-y-2 hover:bg-neutral-800 px-2 mt-3">
+            <ul className="space-y-2 mt-3">
               {searchHistory.map((item, index) => (
-                <li key={index} className="flex justify-between items-center group">
+                <li key={index} className="flex justify-between items-center group hover:bg-neutral-800 rounded-md px-2">
                   <button 
                     onClick={() => handleHistoryItemClick(item)}
                     className="text-neutral-300 hover:text-white flex items-center gap-2 w-full text-left py-2"

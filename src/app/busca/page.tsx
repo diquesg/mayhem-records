@@ -159,7 +159,7 @@ export default function Busca() {
                 setQuery(e.target.value);
                 setWarning(false);
               }}
-              placeholder="O que você quer ouvir hoje? (digite para buscar em tempo real)"
+              placeholder="O que você quer ouvir hoje?"
               className={`border bg-black rounded-full w-full p-3 text-neutral-300 border-neutral-700 ${warning ? "border-red-500" : ""}`}
               autoFocus
             />

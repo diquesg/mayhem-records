@@ -46,7 +46,7 @@ export default function Conta(){
                             </svg>
                             <p className="text-sm text-neutral-400 font-medium">Amante de música desde 2025</p>
                         </span>
-                        <Link href="/configuracoes"><button className="p-2 my-1 border hover:scale-102 active:scale-90 transition-all border-neutral-500 px-3 text-sm w-fit bg-neutral-800 rounded-md active:scale-90 active:bg-neutral-900 hover:bg-neutral-900 hover:cursor-pointer">Editar Perfil</button></Link>
+                        <Link href=""><button className="p-2 my-1 border hover:scale-102 active:scale-90 transition-all border-neutral-500 px-3 text-sm w-fit bg-neutral-800 rounded-md active:scale-90 active:bg-neutral-900 hover:bg-neutral-900 hover:cursor-pointer">Editar Perfil</button></Link>
                     </div>
                 </section>
             </div>
