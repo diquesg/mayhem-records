@@ -58,7 +58,7 @@ export default function Conta(){
                         MEUS FAVORITOS</h1>
                         <div>
                             {favorites.length === 0 ? (
-                                <div className="text-center mt-80 flex flex-col gap-1">
+                                <div className="text-center mt-10 flex flex-col gap-1">
                                     <HeartCrack className='self-center' width={32} height={32}/>
                                     <h1 className="text-xl text-neutral-300 mb-1 font-bold">Nada encontrado!</h1>
                                     <p className="text-lg mb-2">Você ainda não tem favoritos.</p>

@@ -118,7 +118,7 @@ export default function ProductCard(props: ProductCardProps){
             </div>
         </article>
             {cartAlert && (
-                <div className='fixed bottom-40 md:bottom-20 lg:bottom-10 lg:right-10 right-0 h-fit rounded-md z-40 bg-neutral-950 border m-3 w-fit shadow-lg shadow-[#050505]'>
+                <div className='fixed bottom-22 md:bottom-20 lg:bottom-10 lg:right-10 right-0 h-fit rounded-md z-40 bg-neutral-950 border m-3 w-fit shadow-lg shadow-[#050505]'>
                     <Progress value={progressValue} className=" rounded-none rounded-t-md border-b"/>
                     <div className='gap-3 p-3 flex justify-center items-center'>
                         <ShoppingCart/>
