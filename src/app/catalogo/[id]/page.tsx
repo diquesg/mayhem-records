@@ -256,7 +256,7 @@ export default function ProductPage() {
                             <div key={sideIndex} className='text-xl font-light text-[#CECECE] leading-[30px] whitespace-pre-line mt-12'>
                                 <h4 className='font-bold text-xl text-[#CECECE]'>{side.title}</h4>
                                 <ol>
-                                    {side.tracks.map((track, trackIndex) => (
+                                    {side.tracks.map((track: string, trackIndex: number) => (
                                         <li key={trackIndex} className="flex gap-2">
                                             <span className="">{trackIndex + 1}.</span>
                                             <span className="">{track}</span>
