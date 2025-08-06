@@ -11,17 +11,31 @@ import Footer from "../components/footer";
     subsets: ["latin"]
   })
 
+  export const dynamic = 'force-dynamic';
+
 export default async function Home() {
 
-  async function getProducts(){
-    const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/catalogo?page=1&limit=6`);
-    const productsData = await data.json();
-    console.log("CONSOLE: ", productsData);
-    return productsData.products;
+  async function getProducts() {
+  try {
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+    if (!apiUrl) throw new Error("API URL não configurada");
+    
+    console.log("API URL:", `${apiUrl}/api/catalogo?page=1&limit=6`);
+    
+    const res = await fetch(`${apiUrl}/api/catalogo?page=1&limit=6`, {
+      cache: 'no-store'
+    });
+    
+    if (!res.ok) throw new Error("Falha ao buscar produtos");
+    return await res.json();
+  } catch (error) {
+    console.error("Erro na requisição:", error);
+    return { products: [] };
   }
+}
 
 
-  const products = await getProducts();
+  const {products} = await getProducts();
 
   return (
     <>
