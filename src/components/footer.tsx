@@ -2,7 +2,8 @@ import Image from "next/image"
 import { Libre_Caslon_Text } from "next/font/google"
 
   const LibreFont = Libre_Caslon_Text({
-    weight: "400"
+    weight: "400",
+    subsets: ["latin"]
   })
 
 export default function Footer(){

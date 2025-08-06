@@ -7,7 +7,8 @@ import { Libre_Caslon_Text } from "next/font/google";
 import Footer from "../components/footer";
 
   const LibreFont = Libre_Caslon_Text({
-    weight: ["400", "700"]
+    weight: ["400", "700"],
+    subsets: ["latin"]
   })
 
 export default async function Home() {
