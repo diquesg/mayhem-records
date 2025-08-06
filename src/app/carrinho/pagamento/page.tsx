@@ -135,7 +135,7 @@ export default function Pagamento(){
 
     return(
         <>
-        <div className='md:mx-6 xl:mx-60 md:flex md:flex-col lg:flex-row md:gap-3 lg:mb-16'>
+        <div className='md:mx-6 xl:mx-60 md:flex md:flex-col lg:flex-row md:gap-3 mb-70 lg:mb-16'>
             <h1 className='fixed top-0 z-20 justify-center w-full flex text-xl font-bold gap-2 items-center mt-4 md:hidden'><CreditCard width={28} height={28} strokeWidth={2}/> Pagamento</h1>
 
             <main className='mt-20 lg:mt-50 md:w-full md:bg-[#101010] md:border md:rounded-lg md:p-6 md:mb-0'>

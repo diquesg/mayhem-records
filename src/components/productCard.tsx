@@ -101,7 +101,7 @@ export default function ProductCard(props: ProductCardProps){
                 </div>
             </div>
             <div className="flex justify-between items-center mt-auto mb-1">
-                <p className="font-medium text-xl text-neutral-200">R$ {props.price.toFixed(2)}</p>
+                <p className="font-medium text-lg sm:text-xl text-neutral-200">R$ {props.price.toFixed(2)}</p>
                 <button className="bg-[#101010] px-3 border-[#CECECE] flex items-center rounded-full border h-[36px] cursor-pointer hover:bg-neutral-700 transition-all hover:shadow-md shadow-black active:bg-neutral-800 active:scale-90" onClick={handleAddToCart}>
                     <svg width="30" height="37" viewBox="0 0 30 37" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M4.55433 22.7675V15.2249H6.46129V22.7675H4.55433ZM1.73651 19.9497V18.0427H9.27912V19.9497H1.73651Z" fill="#CECECE"/>

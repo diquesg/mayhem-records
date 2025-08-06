@@ -29,7 +29,7 @@ export default function HeaderLogo(){
               </div>
                       <ul className="lg:text-md xl:text-lg hidden right-5 lg:flex gap-1 xl:gap-6">
                           <li><button className="hover:scale-90 active:scale-80 transition-all"><Link href="/"><span className={`flex gap-2 ${pathname === "/" ? 'bg-white text-black' : 'bg-transparent'} p-3 rounded-xl`}><Home/>Início</span></Link></button></li>
-                          <li><button onClick={() => setSearchOverlayOpen(true)} className="hover:scale-90 active:scale-80 transition-all"><span className={`flex gap-2 ${pathname === "/busca" ? 'bg-white text-black' : 'bg-transparent'} p-3 rounded-xl`}><SearchIcon/>Buscar</span></button></li>
+                          <li><button onClick={() => setSearchOverlayOpen(true)} className="hover:scale-90 active:scale-80 transition-all cursor-pointer"><span className={`flex gap-2 ${pathname === "/busca" ? 'bg-white text-black' : 'bg-transparent'} p-3 rounded-xl`}><SearchIcon/>Buscar</span></button></li>
                           <li><button className="hover:scale-90 active:scale-80 transition-all"><Link href="/catalogo"><span className={`flex gap-2 ${pathname === "/catalogo" ? 'bg-white text-black' : 'bg-transparent'} p-3 rounded-xl`}><Disc3/>Catálogo</span></Link></button></li>
                           <li><button className="hover:scale-90 active:scale-80 transition-all"><Link href="/carrinho">
                           <span className={`flex relative gap-2 ${pathname === "/carrinho" ? 'bg-white text-black' : 'bg-transparent'} p-3 rounded-xl`}><ShoppingCartIcon/>

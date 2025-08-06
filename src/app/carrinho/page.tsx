@@ -68,12 +68,12 @@ export default function CartPage() {
                               alt="rating" 
                               width={100} 
                               height={24} 
-                              className='max-h-fit xl:w-20 pb-1'
+                              className='max-h-fit size-20 xl:w-20 pb-1'
                           />
-                          <p className='text-wrap text-xs text-neutral-400'><span className='text-neutral-300'>4.8 </span>- 231 avaliações</p>
+                          <p className='text-wrap text-xs text-neutral-400'><span className='text-neutral-300'>4.8 </span><span className='hidden sm:inline'>- 231 avaliações</span></p>
                       </div>
                         <div className='flex items-baseline justify-between mt-auto'>
-                            <p className="mt-1 text-lg text-white font-bold md:text-xl">R$ {item.price.toFixed(2)}</p>
+                            <p className="mt-1 text-md sm:text-lg text-white font-bold md:text-xl">R$ {item.price.toFixed(2)}</p>
                             <div className="flex items-center border border-neutral-600 rounded-sm">
                                 <button onClick={() => updateQuantity(item._id, item.quantity - 1)} className="px-3 py-1 hover:bg-neutral-700 active:scale-90 transition-all"> - </button>
                                 <span className="px-3">{item.quantity}</span>

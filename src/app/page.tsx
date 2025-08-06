@@ -70,7 +70,7 @@ export default async function Home() {
         
         <div className="flex flex-col lg:flex-row gap-10 pt-12">
           <article className="">
-            <Link href="/catalogo/6879db9d562724063199f1ea" className="flex flex-col md:flex-row gap-6 lg:gap-12 items-center hover:scale-103 transition-all">
+            <Link href="/catalogo/6879db9d562724063199f1ea" className="flex flex-col md:flex-row gap-6 lg:gap-12 items-center hover:scale-103 active:scale-90 transition-all">
               <Image src="/curadoria1.png" alt="album cover" width={256} height={256} className="md:w-40 2xl:w-fit rounded-lg border border-neutral-500"/>
               <span className="max-w-90 flex flex-col gap-3 lg:gap-6">
                 <h1 className={`text-2xl lg:text-3xl leading-11 ${LibreFont.className} text-white`}>“Um futuro pop eletrônico direto de 2009, ainda pulsante e imprevisível.”</h1>
@@ -79,7 +79,7 @@ export default async function Home() {
             </Link>
           </article>
           <article className="flex flex-col md:flex-row gap-6 lg:gap-12 items-center">
-            <Link href="/catalogo/6879d7cf51e7e99e4dab6017" className="flex flex-col md:flex-row gap-6 lg:gap-12 items-center hover:scale-103 transition-all">
+            <Link href="/catalogo/6879d7cf51e7e99e4dab6017" className="flex flex-col md:flex-row gap-6 lg:gap-12 items-center hover:scale-103 active:scale-90 transition-all">
               <Image src="/curadoria2.png" alt="album cover" width={256} height={256} className="md:w-40 2xl:w-fit rounded-lg border border-neutral-500"/>
               <span className="max-w-90 flex flex-col gap-3 lg:gap-6">
                 <h1 className={`text-2xl lg:text-3xl leading-11 ${LibreFont.className} text-white`}>“O álbum mais vendido da história. Um marco que moldou o som e a estética do pop para sempre.”</h1>
