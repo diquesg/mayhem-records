@@ -7,6 +7,7 @@ import HeaderLogo from "../components/header-logo";
 import { CartProvider } from "@/lib/contexts/cartContext";
 import { FavoritesProvider } from "@/lib/contexts/favoritesContext";
 import { SearchHistoryProvider } from "@/lib/contexts/searchHistoryContext";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 
 const interFont = Inter({
@@ -31,6 +32,7 @@ export default function RootLayout({children,}: Readonly<{children: React.ReactN
               <FavoritesProvider>
                 <HeaderLogo/>
                 {children}
+                <SpeedInsights />
                 <Navbar/>
               </FavoritesProvider>
             </SearchHistoryProvider>
