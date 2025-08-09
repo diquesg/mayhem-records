@@ -99,7 +99,7 @@ export default async function Home() {
         </div>
         <div className="mt-16">
           <div className="flex flex-col lg:flex-row gap-6 items-center">
-            <Image src={"/home-img1.png"} alt="garota segurando disco" width={369} height={246} className="min-w-80"/>
+            <Image src={"/images/home-img1.png"} alt="garota segurando disco" width={369} height={246} className="min-w-80"/>
             <span>
               <h1 className={`text-4xl ${LibreFont.className} text-white font-bold lg:max-w-120 leading-11`}>Mais do que produtos. Um propósito.</h1>
               <p className="max-w-174 text-xl text-[#C7C7C7] mt-6">Acreditamos que toda forma de expressão é válida, e que vestir, ouvir, decorar e consumir o que amamos é uma forma poderosa de contar ao mundo quem somos.</p>
@@ -111,7 +111,7 @@ export default async function Home() {
               <p className="max-w-174 text-xl text-[#C7C7C7] mt-6">Cada pedido é embalado com todo o carinho e cuidado, em um pacote personalizado que carrega a estética da nossa loja.</p>
               <p className="max-w-174 text-xl text-[#C7C7C7] mt-6">Utilizamos materiais de qualidade que protegem o disco e ainda proporcionam uma experiência única ao receber seu pedido,  porque abrir um vinil deve ser tão especial quanto ouvi-lo. Junto do seu pedido, você também recebe um pequeno guia com dicas de conservação.</p>
             </span>
-            <Image src={"/home-img2.png"} alt="garota segurando disco" width={376} height={376}/>
+            <Image src={"/images/home-img2.png"} alt="garota segurando disco" width={376} height={376}/>
           </div>
         </div>
       </section>
