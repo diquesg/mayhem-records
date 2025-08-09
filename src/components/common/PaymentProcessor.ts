@@ -1,4 +1,3 @@
-// components/PaymentProcessor.ts
 export const processPayment = async (method: string, amount: number) => {
   await new Promise(resolve => setTimeout(resolve, 1500));
   

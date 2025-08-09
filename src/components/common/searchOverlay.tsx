@@ -1,6 +1,6 @@
 "use client";
 
-import { useSearchHistory } from "@/lib/contexts/searchHistoryContext";
+import { useSearchHistory } from "@/src/hooks/searchHistoryContext";
 import { Search, X, Clock, Trash2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState, useEffect, useRef } from "react";

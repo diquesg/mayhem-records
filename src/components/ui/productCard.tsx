@@ -1,9 +1,9 @@
 "use client"
-import { ProductType } from "@/lib/types/Product"
+import { ProductType } from "@/src/types/Product"
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import { useCart } from "@/lib/contexts/cartContext";
+import { useCart } from "@/src/hooks/cartContext";
 import { Progress } from "@/components/ui/progress";
 import { ShoppingCart } from "lucide-react";
 

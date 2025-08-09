@@ -1,10 +1,10 @@
 import Link from "next/link";
-import Carrossel from "../components/carrossel"
-import { ProductType } from "@/lib/types/Product";
-import ProductCard from "../components/productCard";
+import Carrossel from "../components/ui/carrossel"
+import { ProductType } from "@/src/types/Product";
+import ProductCard from "../components/ui/productCard";
 import Image from "next/image";
 import { Libre_Caslon_Text } from "next/font/google";
-import Footer from "../components/footer";
+import Footer from "../components/layout/footer";
 
   const LibreFont = Libre_Caslon_Text({
     weight: ["400", "700"],
@@ -19,8 +19,6 @@ export default async function Home() {
   try {
     const apiUrl = process.env.NEXT_PUBLIC_API_URL;
     if (!apiUrl) throw new Error("API URL não configurada");
-    
-    console.log("API URL:", `${apiUrl}/api/catalogo?page=1&limit=6`);
     
     const res = await fetch(`${apiUrl}/api/catalogo?page=1&limit=6`, {
       cache: 'no-store'
@@ -58,7 +56,7 @@ export default async function Home() {
         </section>
       </section>
 
-      <section className="px-2 md:px-12 xl:px-60 py-24 mt-20 bg-[url(/home-bg1.png)] bg-cover border-y border-neutral-700">
+      <section className="px-2 md:px-12 xl:px-60 py-24 mt-20 bg-[url(/backgrounds/home-bg1.png)] bg-cover border-y border-neutral-700">
         <div className="flex justify-between text-sm items-center border-neutral-800">
           <span className="flex gap-2 items-center">
             <svg width="26" height="24" viewBox="0 0 26 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -71,7 +69,7 @@ export default async function Home() {
         <div className="flex flex-col lg:flex-row gap-10 pt-12">
           <article className="">
             <Link href="/catalogo/6879db9d562724063199f1ea" className="flex flex-col md:flex-row gap-6 lg:gap-12 items-center hover:scale-103 active:scale-90 transition-all">
-              <Image src="/curadoria1.png" alt="album cover" width={256} height={256} className="md:w-40 2xl:w-fit rounded-lg border border-neutral-500"/>
+              <Image src="/images/curadoria1.png" alt="album cover" width={256} height={256} className="md:w-40 2xl:w-fit rounded-lg border border-neutral-500"/>
               <span className="max-w-90 flex flex-col gap-3 lg:gap-6">
                 <h1 className={`text-2xl lg:text-3xl leading-11 ${LibreFont.className} text-white`}>“Um futuro pop eletrônico direto de 2009, ainda pulsante e imprevisível.”</h1>
                 <p className="text-lg lg:text-xl text-neutral-400">— Curadoria Mayhem Records</p>
@@ -80,7 +78,7 @@ export default async function Home() {
           </article>
           <article className="flex flex-col md:flex-row gap-6 lg:gap-12 items-center">
             <Link href="/catalogo/6879d7cf51e7e99e4dab6017" className="flex flex-col md:flex-row gap-6 lg:gap-12 items-center hover:scale-103 active:scale-90 transition-all">
-              <Image src="/curadoria2.png" alt="album cover" width={256} height={256} className="md:w-40 2xl:w-fit rounded-lg border border-neutral-500"/>
+              <Image src="/images/curadoria2.png" alt="album cover" width={256} height={256} className="md:w-40 2xl:w-fit rounded-lg border border-neutral-500"/>
               <span className="max-w-90 flex flex-col gap-3 lg:gap-6">
                 <h1 className={`text-2xl lg:text-3xl leading-11 ${LibreFont.className} text-white`}>“O álbum mais vendido da história. Um marco que moldou o som e a estética do pop para sempre.”</h1>
                 <p className="text-lg lg:text-xl text-neutral-400">— Curadoria Mayhem Records</p>
@@ -90,7 +88,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="px-4 md:px-12 xl:px-60 py-24 lg:py-36 bg-[url(/home-bg2.png)] bg-cover">
+      <section className="px-4 md:px-12 xl:px-60 py-24 lg:py-36 bg-[url(/backgrounds/home-bg2.png)] bg-cover">
         <div className="flex justify-between text-sm items-center border-neutral-800">
           <span className="flex gap-2 items-center">
             <svg width="26" height="24" viewBox="0 0 26 24" fill="none" xmlns="http://www.w3.org/2000/svg">

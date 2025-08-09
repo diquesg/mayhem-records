@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client"
 
-import { useCart } from '@/lib/contexts/cartContext';
+import { useCart } from '@/src/hooks/cartContext';
 import { Check, Clipboard, CreditCard, Disc3, FileText, MapPin, Package, QrCode, ShoppingBag, User2 } from 'lucide-react';
-import BackButton from '@/src/components/backButton';
+import BackButton from '@/src/components/ui/backButton';
 import Link from 'next/link';
 import { Label } from "@/components/ui/label"
 import {
@@ -11,10 +11,10 @@ import {
   RadioGroupItem,
 } from "@/components/ui/radio-group"
 import Image from 'next/image';
-import { processPayment } from '@/src/components/PaymentProcessor';
+import { processPayment } from '@/src/components/common/PaymentProcessor';
 import { useState } from 'react';
 import { Progress } from "@/components/ui/progress"
-import Footer from '@/src/components/footer';
+import Footer from '@/src/components/layout/footer';
 
 export default function Pagamento(){
     const { total, itemCount, cartItems, clearCart } = useCart();
@@ -181,19 +181,19 @@ export default function Pagamento(){
                             <div className="flex items-center gap-3 border border-neutral-800 p-3 rounded-md focus:border-neutral-100">
                                 <RadioGroupItem value="card1" id="r1" />
                                 <Label htmlFor="r1" className='w-full'>•••• •••• •••• 5225 (Crédito)
-                                    <Image src="/mastercard.png" width={28} height={15} alt={"mastercard"}/>
+                                    <Image src="/payment/mastercard.png" width={28} height={15} alt={"mastercard"}/>
                                 </Label>
                             </div>
                             <div className="flex items-center gap-3 border border-neutral-800 p-3 rounded-md">
                                 <RadioGroupItem value="card2" id="r2" />
                                 <Label htmlFor="r2" className='w-full'>•••• •••• •••• 7223 (Débito)
-                                    <Image src="/mastercard.png" width={28} height={15} alt={"mastercard"}/>
+                                    <Image src="/payment/mastercard.png" width={28} height={15} alt={"mastercard"}/>
                                 </Label>
                             </div>
                             <div className="flex items-center gap-3 border border-neutral-800 p-3 rounded-md">
                                 <RadioGroupItem value="pix" id="r3" />
                                 <Label htmlFor="r3" className='w-full'>Pix
-                                    <Image src="/pix.png" width={20} height={20} alt={"pix"}/>
+                                    <Image src="/payment/pix.png" width={20} height={20} alt={"pix"}/>
                                 </Label>
                             </div>
                             </RadioGroup>
@@ -238,13 +238,13 @@ export default function Pagamento(){
                 <div className="fixed inset-0 z-50 bg-black/75 flex items-center justify-center p-3">
                     <div className="bg-neutral-900 rounded-lg p-6 max-w-md w-full border border-neutral-700">
                     <div className='flex gap-2 mb-5 justify-center items-center'>
-                        <Image src="/pix.png" alt='pix logo' width={32} height={32} className=''/>
+                        <Image src="/payment/pix.png" alt='pix logo' width={32} height={32} className=''/>
                         <h2 className="text-2xl font-bold text-center text-nowrap shrink">Pagamento via PIX</h2>
                     </div>
                     
                     <div className="bg-white p-4 rounded-lg mb-4 flex flex-col items-center">
                         <div className="bg-neutral-200 w-48 h-48 flex items-center justify-center">
-                            <Image src="/fake-qr-code.png" alt='fake qr code' height={200} width={200} className=''/>
+                            <Image src="/images/fake-qr-code.png" alt='fake qr code' height={200} width={200} className=''/>
                         </div>
                         
                         <p className="text-black text-md font-semibold text-center">Escaneie com seu app de banco</p>

@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import {  Bell, Lock, Globe, Shield, User, CreditCard, CircleAlert, ArrowRight, Settings } from 'lucide-react'
-import BackButton from '@/src/components/backButton'
+import BackButton from '@/src/components/ui/backButton'
 
 export default function SettingsPage() {
   const [notifications, setNotifications] = useState(true)

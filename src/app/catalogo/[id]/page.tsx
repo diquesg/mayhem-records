@@ -1,16 +1,16 @@
 "use client"
 
 import Image from 'next/image';
-import FavoriteButton from "@/src/components/favoriteButton"
-import BackButton from "@/src/components/backButton"
-import { useCart } from '@/lib/contexts/cartContext';
+import FavoriteButton from "@/src/components/ui/favoriteButton"
+import BackButton from "@/src/components/ui/backButton"
+import { useCart } from '@/src/hooks/cartContext';
 import { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { ProductType } from '@/lib/types/Product';
+import { ProductType } from '@/src/types/Product';
 import { Progress } from '@/components/ui/progress';
 import { ShoppingCart } from 'lucide-react';
-import Footer from '@/src/components/footer';
-import ProductCard from '@/src/components/productCard';
+import Footer from '@/src/components/layout/footer';
+import ProductCard from '@/src/components/ui/productCard';
 
 export default function ProductPage() {
     const params = useParams();
@@ -143,8 +143,6 @@ export default function ProductPage() {
         );
     }
 
-    console.log(product.img)
-
     return (
         <>
         <main className='pb-49 md:pb-27'>
@@ -174,7 +172,7 @@ export default function ProductPage() {
                         <div className='flex flex-col w-fit gap-2 font-extralight text-neutral-400 mb-auto'>
                             <div className='flex items-center gap-1'>
                                 <Image 
-                                    src="/rating.png" 
+                                    src="/icons/rating.png" 
                                     alt="rating" 
                                     width={100} 
                                     height={24} 

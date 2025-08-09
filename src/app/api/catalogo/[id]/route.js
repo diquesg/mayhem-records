@@ -1,6 +1,6 @@
-import {NextResponse} from "next/server";
-import connect from "@/lib/mongo.js";
-import Product from "@/lib/models/Product";
+import { NextResponse } from "next/server";
+import connect from "@/src/utils/mongo.js";
+import Product from "@/src/types/ProductModel";
 import mongoose from "mongoose";
 
 

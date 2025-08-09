@@ -2,9 +2,9 @@
 import { Check, Disc3, Heart, HeartCrack, Truck } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useFavorites } from '@/lib/contexts/favoritesContext';
-import ProductCard from "@/src/components/productCard";
-import Footer from "@/src/components/footer";
+import { useFavorites } from '@/src/hooks/favoritesContext';
+import ProductCard from "@/src/components/ui/productCard";
+import Footer from "@/src/components/layout/footer";
 
 export default function Conta(){
     const usuario = "Eduarda"
@@ -33,10 +33,10 @@ export default function Conta(){
 ]
 
     return(
-        <main className=" pt-1 bg-[#101010] h-dvh bg-no-repeat bg-contain bg-center">
-            <div className="md:bg-[url(/account-banner.png)] pb-10 md:pb-0 border-b border-neutral-700 bg-cover h-fit mt-20 md:mt-35 w-full lg:py-15 md:px-20 xl:px-90 flex">
+        <main className=" pt-1  h-dvh bg-no-repeat bg-contain bg-center">
+            <div className="md:bg-[url(/banners/account-banner.png)] pb-10 md:pb-0 border-b border-neutral-700 bg-cover h-fit mt-20 md:mt-35 w-full lg:py-15 md:px-20 xl:px-90 flex">
                 <section className="md:bg-[#151515] md:p-3 md:py-6 my-auto md:border border-neutral-700 w-full rounded-lg md:px-6 flex gap-5 items-center m-2 text-md">
-                    <Image src="/user.png" alt="foto de usuário" width={170} height={170} className="lg:h-fit"/>
+                    <Image src="/icons/user.png" alt="foto de usuário" width={170} height={170} className="lg:h-fit"/>
                     <div className="flex flex-col gap-2">
                         <p className="font-medium text-white text-2xl sm:text-3xl">{usuario}</p>
                         <p className="text-neutral-400 font-light">{usuario.toLowerCase()}@gmail.com</p>
@@ -58,11 +58,11 @@ export default function Conta(){
                         MEUS FAVORITOS</h1>
                         <div>
                             {favorites.length === 0 ? (
-                                <div className="text-center mt-10 flex flex-col gap-1">
+                                <div className="text-center mt-10 flex flex-col gap-1 text-neutral-400">
                                     <HeartCrack className='self-center' width={32} height={32}/>
-                                    <h1 className="text-xl text-neutral-300 mb-1 font-bold">Nada encontrado!</h1>
+                                    <h1 className="text-xl mb-1 font-bold">Nada encontrado!</h1>
                                     <p className="text-lg mb-2">Você ainda não tem favoritos.</p>
-                                    <Link href="/catalogo" className="self-center border border-white text-white py-2 px-6 rounded-full hover:bg-neutral-700 active:bg-neutral-700 active:scale-95">Explorar Catálogo</Link>
+                                    <Link href="/catalogo" className="self-center border py-2 px-6 rounded-full hover:bg-neutral-700 active:bg-neutral-700 active:scale-95">Explorar Catálogo</Link>
                                     </div>
                             ) : (
                                 <div className={`mt-8 pt-4 overflow-x-auto pb-12 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-3 lg:gap-4 justify-items-center`}>

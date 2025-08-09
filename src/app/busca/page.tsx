@@ -3,13 +3,13 @@
 
 import { Suspense } from 'react';
 import { FormEvent, useEffect, useState } from 'react';
-import { ProductType } from '@/lib/types/Product';
-import ProductCard from '@/src/components/productCard';
+import { ProductType } from '@/src/types/Product';
+import ProductCard from '@/src/components/ui/productCard';
 import { Disc3, Search } from 'lucide-react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useSearchHistory } from '@/lib/contexts/searchHistoryContext';
-import BackButton from '@/src/components/backButton';
-import Footer from '@/src/components/footer';
+import { useSearchHistory } from '@/src/hooks/searchHistoryContext';
+import BackButton from '@/src/components/ui/backButton';
+import Footer from '@/src/components/layout/footer';
 
 type SortType = 'price' | 'relevance' | 'sales';
 type SortDirection = 'normal' | 'asc' | 'desc';

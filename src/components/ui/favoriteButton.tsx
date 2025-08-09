@@ -1,6 +1,6 @@
 "use client"
 
-import { useFavorites } from "@/lib/contexts/favoritesContext";
+import { useFavorites } from "@/src/hooks/favoritesContext";
 
 interface ProductCardProps {
   product: {

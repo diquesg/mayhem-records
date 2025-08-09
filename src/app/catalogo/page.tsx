@@ -1,12 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client"
-import { ProductType } from '@/lib/types/Product';
+import { ProductType } from '@/src/types/Product';
 import { FormEvent, useEffect, useState } from 'react';
-import ProductCard from '@/src/components/productCard';
+import ProductCard from '@/src/components/ui/productCard';
 import Image from 'next/image';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Search } from 'lucide-react';
-import Footer from '@/src/components/footer';
+import Footer from '@/src/components/layout/footer';
 
 
 
@@ -167,7 +167,7 @@ export default function Catalogo() {
     <main className="mb-23">
       <div className="pt-16 lg:pt-36 border-b lg:border-none">
 
-        <Image src="/catalog-banner.png" alt="banner do catálogo" width={1920} height={752} style={{ objectFit: 'cover', objectPosition: '30% 50%' }} className='border-b border-neutral-700 h-40 md:h-fit' />
+        <Image src="/banners/catalog-banner.png" alt="banner do catálogo" width={1920} height={752} style={{ objectFit: 'cover', objectPosition: '30% 50%' }} className='border-b border-neutral-700 h-40 md:h-fit' />
 
         <section className='lg:mx-4 xl:px-30 2xl:px-60 m-3 lg:justify-between lg:items-baseline lg:gap-3'>
           <div className='flex flex-col md:flex-row md:items-center gap-3 pt-8 pb-0 items-start md:justify-between'>

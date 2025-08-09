@@ -1,11 +1,11 @@
 "use client";
 
-import { useCart } from '@/lib/contexts/cartContext';
+import { useCart } from '@/src/hooks/cartContext';
 import { CreditCard, Disc3, FileText, Package, ShoppingBag, ShoppingCart, Trash2 } from 'lucide-react';
 import Image from 'next/image';
-import BackButton from '@/src/components/backButton';
+import BackButton from '@/src/components/ui/backButton';
 import Link from 'next/link';
-import Footer from '@/src/components/footer';
+import Footer from '@/src/components/layout/footer';
 
 export default function CartPage() {
     const {
@@ -64,7 +64,7 @@ export default function CartPage() {
                         <p className="text-neutral-400 text-sm">{item.artist}</p>
                         <div className='flex items-center gap-1'>
                           <Image 
-                              src="/rating.png" 
+                              src="/icons/rating.png" 
                               alt="rating" 
                               width={100} 
                               height={24} 
