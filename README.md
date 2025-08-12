@@ -14,7 +14,7 @@
 
 ## 📖 Sobre o Projeto
 
-Mayhem Records é uma plataforma de e-commerce moderna e responsiva dedicada à venda de discos de vinil. O projeto simula uma loja online completa com funcionalidades avançadas de navegação, busca, carrinho de compras e sistema de favoritos.
+Mayhem Records é uma plataforma fictícia de e-commerce moderna e responsiva dedicada à venda de discos de vinil. O projeto simula uma loja online completa com funcionalidades avançadas de navegação, busca, carrinho de compras e sistema de favoritos.
 
 ### 🎯 Objetivo
 
