@@ -183,7 +183,7 @@ mayhem-records/
 - **Neutros**: Escala de cinzas para textos e backgrounds
 
 ### Tipografia
-- **Libre Baskerville**: Para títulos e destaques
+- **Libre Caslon Text**: Para títulos e destaques
 - **Inter**: Para textos corridos e interface
 
 ### Componentes
