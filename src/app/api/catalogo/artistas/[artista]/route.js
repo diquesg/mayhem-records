@@ -5,8 +5,8 @@ import Product from '@/src/types/ProductModel';
 export async function GET(request, { params }) {
   try {
     await connect();
-
-    const artista = decodeURIComponent(params.artista);
+    const resolvedParams = await params;
+    const artista = decodeURIComponent(resolvedParams.artista);
     const { searchParams } = new URL(request.url);
     const page = parseInt(searchParams.get('page') || '1');
     const limit = parseInt(searchParams.get('limit') || '12');
@@ -22,10 +22,11 @@ export async function GET(request, { params }) {
     return NextResponse.json({ products, total }, { status: 200 });
 
   } catch (error) {
+    const resolvedParams = await params;
     return NextResponse.json({
       error: "Erro ao buscar produtos do artista",
       message: error.message,
-      artist: params.artista
+      artist: resolvedParams.artista
     }, { status: 500 });
   }
 }

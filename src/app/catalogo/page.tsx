@@ -266,17 +266,82 @@ export default function Catalogo() {
             ))}
           </section>
         {totalProducts > limit && (
-          <div className="flex justify-between mt-5 bg-neutral-900 items-center gap-3 px-6 py-4 rounded-lg border border-neutral-700">
+          <div className="flex justify-center items-center mt-5 gap-3 px-6 py-4 rounded-lg border border-neutral-700 shadow-lg shadow-neutral-950 flex-wrap">
             <button
-              className="px-3 py-1 border border-neutral-500 rounded-full active:bg-neutral-800 hover:bg-neutral-800 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
+              className="px-3 py-1 border border-neutral-500 transition-all active:scale-90 hover:scale-110 rounded-full active:bg-neutral-800 hover:bg-neutral-800 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
               disabled={currentPage === 1}
               onClick={() => fetchProducts(currentPage - 1)}
             >
               Anterior
             </button>
 
+            {(() => {
+              const totalPages = Math.ceil(totalProducts / limit);
+              const pages = [];
+              const maxVisiblePages = 5;
+              
+              let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+              const endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+              
+              if (endPage - startPage + 1 < maxVisiblePages) {
+                startPage = Math.max(1, endPage - maxVisiblePages + 1);
+              }
+              
+              if (startPage > 1) {
+                pages.push(
+                  <button
+                    key={1}
+                    className="w-8 h-8 border border-neutral-500 rounded-full active:bg-neutral-800 hover:bg-neutral-800 cursor-pointer text-sm"
+                    onClick={() => fetchProducts(1)}
+                  >
+                    1
+                  </button>
+                );
+                if (startPage > 2) {
+                  pages.push(
+                    <span key="ellipsis1" className="px-2 text-neutral-400">...</span>
+                  );
+                }
+              }
+              
+              for (let i = startPage; i <= endPage; i++) {
+                pages.push(
+                  <button
+                    key={i}
+                    className={`w-8 h-8 border rounded-full transition-all active:scale-90 hover:scale-110 cursor-pointer text-sm ${
+                      i === currentPage
+                        ? 'bg-blue-600 border-neutral-200 scale-110 text-white'
+                        : 'border-neutral-500 active:bg-neutral-800 hover:bg-neutral-800'
+                    }`}
+                    onClick={() => fetchProducts(i)}
+                  >
+                    {i}
+                  </button>
+                );
+              }
+              
+              if (endPage < totalPages) {
+                if (endPage < totalPages - 1) {
+                  pages.push(
+                    <span key="ellipsis2" className="px-2 text-neutral-400">...</span>
+                  );
+                }
+                pages.push(
+                  <button
+                    key={totalPages}
+                    className="w-8 h-8 border border-neutral-500 rounded-full active:bg-neutral-800 hover:bg-neutral-800 cursor-pointer text-sm"
+                    onClick={() => fetchProducts(totalPages)}
+                  >
+                    {totalPages}
+                  </button>
+                );
+              }
+              
+              return pages;
+            })()}
+
             <button
-              className="px-3 py-1 border border-neutral-500 rounded-full active:bg-neutral-800 hover:bg-neutral-800 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
+              className="px-3 py-1 border border-neutral-500 transition-all active:scale-90 hover:scale-110 rounded-full active:bg-neutral-800 hover:bg-neutral-800 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
               disabled={currentPage === Math.ceil(totalProducts / limit)}
               onClick={() => fetchProducts(currentPage + 1)}
             >

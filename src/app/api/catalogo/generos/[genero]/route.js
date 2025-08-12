@@ -5,8 +5,8 @@ import Product from '@/src/types/ProductModel';
 export async function GET(request, { params }) {
   try {
     await connect();
-
-    const genero = decodeURIComponent(params.genero);
+    const resolvedParams = await params;
+    const genero = decodeURIComponent(resolvedParams.genero);
     const { searchParams } = new URL(request.url);
     const page = parseInt(searchParams.get('page') || '1');
     const limit = parseInt(searchParams.get('limit') || '12');
@@ -22,10 +22,12 @@ export async function GET(request, { params }) {
     return NextResponse.json({ products, total }, { status: 200 });
 
   } catch (error) {
+    const resolvedParams = await params;
+
     return NextResponse.json({
       error: "Erro ao buscar produtos do gênero",
       message: error.message,
-      genre: params.genero
+      genre: resolvedParams.genero
     }, { status: 500 });
   }
 }
