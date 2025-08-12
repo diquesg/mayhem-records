@@ -213,7 +213,7 @@ export default function Catalogo() {
 
                 </span>
 
-                <span className={`${sortDirection !== 'normal' && activeSort === 'relevance' ? "text-blue-500" : ""}`}>Relevância</span>
+                <span className={`${sortDirection !== 'normal' && activeSort === 'relevance' ? "text-blue-500" : ""}`}>Mais recentes</span>
 
               </button>
 
